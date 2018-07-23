@@ -9,7 +9,7 @@ export default function PartsGrid(props) {
     <div className="root">
       <GridList cellHeight= { 180 } className="gridList">
         { parts.map(part => (
-          <GridListTile key={ part.productId } cols={ 0.50 } >
+          <GridListTile key={ part.productId } className="mx-2" cols={ 0.60 } >
             <img src={ part.imageURL } className="imageSize" alt={ part.name } />
             <GridListTileBar
               title={ part.name }
