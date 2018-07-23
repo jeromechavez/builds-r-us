@@ -1,0 +1,16 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  overflow: hidden;
+}
+
+.gridList {
+  width: 1000px;
+  height: 1000px;
+}
+
+.imageSize {
+  width: 180px;
+  height: 180px;
+}
