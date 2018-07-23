@@ -2,12 +2,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-top: 200px;
   overflow: hidden;
 }
 
 .gridList {
-  width: 1000px;
-  height: 1000px;
+  width: 900px;
+  height: 600px;
 }
 
 .imageSize {
