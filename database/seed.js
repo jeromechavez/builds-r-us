@@ -813,7 +813,7 @@ module.exports = [
     price: 149.99
   },
   {
-    type: 'power supply',
+    type: 'powersupply',
     productId: 50,
     brand: 'Corsair',
     name: 'CX550',
@@ -827,7 +827,7 @@ module.exports = [
     price: 49.99
   },
   {
-    type: 'power supply',
+    type: 'powersupply',
     productId: 51,
     brand: 'EVGA',
     name: 'SuperNOVA 850 G3',
@@ -841,7 +841,7 @@ module.exports = [
     price: 99.99
   },
   {
-    type: 'power supply',
+    type: 'powersupply',
     productId: 52,
     brand: 'EVGA',
     name: '600B',
@@ -855,7 +855,7 @@ module.exports = [
     price: 49.99
   },
   {
-    type: 'power supply',
+    type: 'powersupply',
     productId: 53,
     brand: 'EVGA',
     name: 'G3 Series',
@@ -869,7 +869,7 @@ module.exports = [
     price: 79.99
   },
   {
-    type: 'power supply',
+    type: 'powersupply',
     productId: 54,
     brand: 'EVGA',
     name: 'SuperNOVA G1+',
@@ -883,7 +883,7 @@ module.exports = [
     price: 91.99
   },
   {
-    type: 'power supply',
+    type: 'powersupply',
     productId: 55,
     brand: 'Gamdias',
     name: 'ASTRAPE Series P1',
@@ -897,7 +897,7 @@ module.exports = [
     price: 149.99
   },
   {
-    type: 'power supply',
+    type: 'powersupply',
     productId: 56,
     brand: 'SeaSonic',
     name: 'PRIME Series',
@@ -911,7 +911,7 @@ module.exports = [
     price: 199.99
   }, 
   {
-    type: 'power supply',
+    type: 'powersupply',
     productId: 57,
     brand: 'Rosewill',
     name: 'Glacier 700M',
