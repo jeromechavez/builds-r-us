@@ -2,8 +2,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-top: 200px;
   overflow: hidden;
+}
+
+.margin-top-page-spacing {
+  margin-top: 200px;
 }
 
 .gridList {
