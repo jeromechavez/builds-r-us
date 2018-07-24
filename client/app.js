@@ -27,7 +27,6 @@ export default class App extends Component {
 
     window.addEventListener('hashchange', () => {
       const { path, params } = parseHash(window.location.hash)
-      console.log(parseHash(window.location.hash))
       this.setState({ path, params })
     })
   }
@@ -41,7 +40,7 @@ export default class App extends Component {
     return (
       <div className="container">
         <div className="row">
-            <PartFilter activeType={this.state.params.type}></PartFilter>
+            <PartFilter/>
             <PartsGrid parts={ filteredParts }></PartsGrid>
         </div>
       </div>
