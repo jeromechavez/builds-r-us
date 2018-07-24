@@ -2,7 +2,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  overflow: hidden;
 }
 
 .list-filters {
@@ -15,6 +14,10 @@
 }
 
 .imageSize {
-  width: 180px;
+  width: 225px;
   height: 180px;
+}
+
+.card-width {
+  width: 18rem;
 }

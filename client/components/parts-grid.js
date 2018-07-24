@@ -6,18 +6,18 @@ import GridListTileBar from '@material-ui/core/GridListTileBar'
 export default function PartsGrid(props) {
   const { parts } = props
   return (
-    <div className="root list-filters">
-      <GridList cellHeight= { 180 } className="gridList">
+    <div className="root list-filters gridList">
+      <div className="row">
         { parts.map(part => (
-          <GridListTile key={ part.productId } className="mx-2" cols={ 0.60 } >
-            <img src={ part.imageURL } className="imageSize" alt={ part.name } />
-            <GridListTileBar
-              title={ part.name }
-              subtitle={ part.brand }>
-            </GridListTileBar>
-          </GridListTile>
+          <div key={ part.productId } className="card card-width shadow-lg border-0 mx-1 my-1">
+            <img src={ part.imageURL } className="card-img-top mx-auto my-2 imageSize" alt={ part.name } />
+            <div className="card-body text-dark">
+                <h5 className="card-title">{ part.name }</h5>
+                <p className="card-text">{ part.brand }</p>
+            </div>
+          </div>
         ))}
-      </GridList>
+      </div>
     </div>
   )
 }
