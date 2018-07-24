@@ -574,7 +574,7 @@ module.exports = [
     productId: 34,
     brand: 'GIGABYTE',
     chipset: 'NVIDIA',
-    name: 'GeForce GTX 1080 GV-N1080WF3OC-8GD',
+    name: 'GeForce GTX 1080',
     ports: {
       hdmi: 1,
       displayport: 4,
@@ -592,7 +592,7 @@ module.exports = [
     productId: 35,
     brand: 'EVGA',
     chipset: 'NVIDIA',
-    name: 'GeForce GTX 1060 06G-P4-6163-KR',
+    name: 'GeForce GTX 1060',
     ports: {
       hdmi: 1,
       displayport: 3,
@@ -610,7 +610,7 @@ module.exports = [
     productId: 36,
     brand: 'GIGABYTE',
     chipset: 'NVIDIA',
-    name: 'GeForce GTX 1080 Ti GV-N108TTURBO-11GD',
+    name: 'GeForce GTX 1080 Ti',
     ports: {
       hdmi: 1,
       displayport: 4,
@@ -628,7 +628,7 @@ module.exports = [
     productId: 37,
     brand: 'SAPPHIRE',
     chipset: 'AMD',
-    name: 'Radeon RX 580 100411NT+8GL',
+    name: 'Radeon RX 580',
     ports: {
       hdmi: 2,
       displayport: 2,
@@ -645,7 +645,7 @@ module.exports = [
     productId: 38,
     brand: 'MSI',
     chipset: 'NVIDIA',
-    name: 'GeForce GTX 1070 ARMOR 8G OC',
+    name: 'GeForce GTX 1070',
     ports: {
       hdmi: 1,
       displayport: 3,
@@ -662,7 +662,7 @@ module.exports = [
     productId: 39,
     brand: 'GIGABYTE',
     chipset: 'AMD', 
-    name: 'Radeon RX 580 GV-RX580GAMING-8GD',
+    name: 'Radeon RX 580',
     ports: {
       hdmi: 1,
       displayport: 3,
@@ -679,7 +679,7 @@ module.exports = [
     productId: 40,
     brand: 'GIGABYTE',
     chipset: 'AMD',
-    name: 'Radeon RX 570 GV-RX570GAMING-4GD',
+    name: 'Radeon RX 570',
     ports: {
       hdmi: 1,
       displayport: 3,
@@ -696,7 +696,7 @@ module.exports = [
     productId: 41,
     brand: 'ASUS',
     chipset: 'AMD',
-    name: 'Radeon EX Vega 64 AREZ-STRIX-RXVEGA64-O8G-GAMING',
+    name: 'Radeon EX Vega 64',
     ports: {
       hdmi: 2,
       displayport: 2,
@@ -1038,7 +1038,7 @@ module.exports = [
     type: 'cooling',
     productId: 69,
     brand: 'Thermaltake',
-    name: 'Flow Ring RGB 360 TT Premium Edition',
+    name: 'Flow Ring RGB 360 TT',
     radiator: 360,
     imageURL: 'https://c1.neweggimages.com/NeweggImage/ProductImageCompressAll1280/35-106-503-V02.jpg',
     newegg: 'https://www.newegg.com/Product/Product.aspx?Item=N82E16835106503',
