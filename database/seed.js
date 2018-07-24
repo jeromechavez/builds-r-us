@@ -574,7 +574,7 @@ module.exports = [
     productId: 34,
     brand: 'GIGABYTE',
     chipset: 'NVIDIA',
-    name: 'GeForce GTX 1080 GV-N1080WF3OC-8GD',
+    name: 'GeForce GTX 1080',
     ports: {
       hdmi: 1,
       displayport: 4,
@@ -592,7 +592,7 @@ module.exports = [
     productId: 35,
     brand: 'EVGA',
     chipset: 'NVIDIA',
-    name: 'GeForce GTX 1060 06G-P4-6163-KR',
+    name: 'GeForce GTX 1060',
     ports: {
       hdmi: 1,
       displayport: 3,
@@ -610,7 +610,7 @@ module.exports = [
     productId: 36,
     brand: 'GIGABYTE',
     chipset: 'NVIDIA',
-    name: 'GeForce GTX 1080 Ti GV-N108TTURBO-11GD',
+    name: 'GeForce GTX 1080 Ti',
     ports: {
       hdmi: 1,
       displayport: 4,
@@ -628,7 +628,7 @@ module.exports = [
     productId: 37,
     brand: 'SAPPHIRE',
     chipset: 'AMD',
-    name: 'Radeon RX 580 100411NT+8GL',
+    name: 'Radeon RX 580',
     ports: {
       hdmi: 2,
       displayport: 2,
@@ -645,7 +645,7 @@ module.exports = [
     productId: 38,
     brand: 'MSI',
     chipset: 'NVIDIA',
-    name: 'GeForce GTX 1070 ARMOR 8G OC',
+    name: 'GeForce GTX 1070',
     ports: {
       hdmi: 1,
       displayport: 3,
@@ -662,7 +662,7 @@ module.exports = [
     productId: 39,
     brand: 'GIGABYTE',
     chipset: 'AMD', 
-    name: 'Radeon RX 580 GV-RX580GAMING-8GD',
+    name: 'Radeon RX 580',
     ports: {
       hdmi: 1,
       displayport: 3,
@@ -679,7 +679,7 @@ module.exports = [
     productId: 40,
     brand: 'GIGABYTE',
     chipset: 'AMD',
-    name: 'Radeon RX 570 GV-RX570GAMING-4GD',
+    name: 'Radeon RX 570',
     ports: {
       hdmi: 1,
       displayport: 3,
@@ -696,7 +696,7 @@ module.exports = [
     productId: 41,
     brand: 'ASUS',
     chipset: 'AMD',
-    name: 'Radeon EX Vega 64 AREZ-STRIX-RXVEGA64-O8G-GAMING',
+    name: 'Radeon EX Vega 64',
     ports: {
       hdmi: 2,
       displayport: 2,
@@ -813,7 +813,7 @@ module.exports = [
     price: 149.99
   },
   {
-    type: 'power supply',
+    type: 'powersupply',
     productId: 50,
     brand: 'Corsair',
     name: 'CX550',
@@ -827,7 +827,7 @@ module.exports = [
     price: 49.99
   },
   {
-    type: 'power supply',
+    type: 'powersupply',
     productId: 51,
     brand: 'EVGA',
     name: 'SuperNOVA 850 G3',
@@ -841,7 +841,7 @@ module.exports = [
     price: 99.99
   },
   {
-    type: 'power supply',
+    type: 'powersupply',
     productId: 52,
     brand: 'EVGA',
     name: '600B',
@@ -855,7 +855,7 @@ module.exports = [
     price: 49.99
   },
   {
-    type: 'power supply',
+    type: 'powersupply',
     productId: 53,
     brand: 'EVGA',
     name: 'G3 Series',
@@ -869,7 +869,7 @@ module.exports = [
     price: 79.99
   },
   {
-    type: 'power supply',
+    type: 'powersupply',
     productId: 54,
     brand: 'EVGA',
     name: 'SuperNOVA G1+',
@@ -883,7 +883,7 @@ module.exports = [
     price: 91.99
   },
   {
-    type: 'power supply',
+    type: 'powersupply',
     productId: 55,
     brand: 'Gamdias',
     name: 'ASTRAPE Series P1',
@@ -897,7 +897,7 @@ module.exports = [
     price: 149.99
   },
   {
-    type: 'power supply',
+    type: 'powersupply',
     productId: 56,
     brand: 'SeaSonic',
     name: 'PRIME Series',
@@ -911,7 +911,7 @@ module.exports = [
     price: 199.99
   }, 
   {
-    type: 'power supply',
+    type: 'powersupply',
     productId: 57,
     brand: 'Rosewill',
     name: 'Glacier 700M',

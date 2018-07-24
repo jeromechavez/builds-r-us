@@ -1,23 +1,48 @@
 import React from 'react'
-import GridList from '@material-ui/core/GridList'
-import GridListTile from '@material-ui/core/GridListTile'
-import GridListTileBar from '@material-ui/core/GridListTileBar'
+import Grid from '@material-ui/core/Grid'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
+
+const styles = {
+  root: {
+    flexGrow: 1,
+    marginTop: '20px'
+  },
+  imageSize: {
+    height: '180px',
+    width: '250px',
+    paddingTop: '10px',
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  },
+  header: {
+    fontFamily: 'Roboto',
+    width: '250px',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
+  }
+}
 
 export default function PartsGrid(props) {
   const { parts } = props
   return (
-    <div className="root">
-      <GridList cellHeight= { 180 } className="gridList">
+    <div style={ styles.root }>
+      <Grid container spacing={ 24 }>
         { parts.map(part => (
-          <GridListTile key={ part.productId } className="mx-2" cols={ 0.60 } >
-            <img src={ part.imageURL } className="imageSize" alt={ part.name } />
-            <GridListTileBar
-              title={ part.name }
-              subtitle={ part.brand }>
-            </GridListTileBar>
-          </GridListTile>
+          <Grid item xs={3} key={ part.productId }>
+            <Card>
+              <img src={ part.imageURL } style={ styles.imageSize } alt={ part.name } />
+              <CardContent>
+                <h4 style={styles.header}>{ part.name }</h4>
+                <Typography component="p">{ part.brand }</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
         ))}
-      </GridList>
+      </Grid>
     </div>
   )
 }
