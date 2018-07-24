@@ -18,7 +18,11 @@ const styles = {
     marginRight: 'auto'
   },
   header: {
-    fontFamily: 'Roboto'
+    fontFamily: 'Roboto',
+    width: '250px',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
   }
 }
 

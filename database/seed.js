@@ -1038,7 +1038,7 @@ module.exports = [
     type: 'cooling',
     productId: 69,
     brand: 'Thermaltake',
-    name: 'Flow Ring RGB 360 TT',
+    name: 'Flow Ring RGB 360 TT Premium Edition',
     radiator: 360,
     imageURL: 'https://c1.neweggimages.com/NeweggImage/ProductImageCompressAll1280/35-106-503-V02.jpg',
     newegg: 'https://www.newegg.com/Product/Product.aspx?Item=N82E16835106503',
