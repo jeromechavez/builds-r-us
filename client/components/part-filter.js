@@ -4,7 +4,7 @@ import Link from './link'
 export default function PartFilter({ activeType }) {
   return (
     <div className="row mx-3">
-      <ul className="nav flex-column nav-pills margin-top-page-spacing">
+      <ul className="nav flex-column nav-pills list-filters">
         <li className="nav-item">
           <Link
             path="parts"

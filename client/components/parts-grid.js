@@ -6,7 +6,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar'
 export default function PartsGrid(props) {
   const { parts } = props
   return (
-    <div className="root margin-top-page-spacing">
+    <div className="root list-filters">
       <GridList cellHeight= { 180 } className="gridList">
         { parts.map(part => (
           <GridListTile key={ part.productId } className="mx-2" cols={ 0.60 } >
