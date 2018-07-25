@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import parseHash from './util/hash'
-import PartsGrid from './components/parts-grid'
-import PartFilter from './components/part-filter'
+import GridView from './views/grid-view'
 
 export default class App extends Component {
   constructor(props) {
@@ -9,41 +8,31 @@ export default class App extends Component {
     const { path, params } = parseHash(window.location.hash)
     this.state = { 
       path: path, 
-      params: params, 
-      parts: []
+      params: params
     }
   }
 
   componentDidMount() {
-    const req = {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
-    }
-
-    fetch('/computer-parts', req)
-      .then(res => res.ok && res.json())
-      .then(data => this.setState({ parts: data }))
-      .catch(err => console.error(err))
-
     window.addEventListener('hashchange', () => {
       const { path, params } = parseHash(window.location.hash)
       this.setState({ path, params })
     })
   }
 
+  renderPartsGrid() {
+    const { navigate, handleCard } = this
+    const { type } = this.state.params 
+    return <GridView type={ type } navigate={ navigate } card={ handleCard }/>
+  }
+
+  renderView() {
+    switch (this.state.path) {
+      default:
+        return this.renderPartsGrid()
+    }
+  }
+
   render() {
-    const { type } = this.state.params
-    const { parts } = this.state
-    const filteredParts = type 
-      ? parts.filter(part => part.type === type)
-      : parts
-    return (
-      <div className="container">
-        <div className="row">
-            <PartFilter/>
-            <PartsGrid parts={ filteredParts }></PartsGrid>
-        </div>
-      </div>
-    )
+    return this.renderView()
   }
 }
