@@ -11,14 +11,14 @@ import Grid from '@material-ui/core/Grid'
 const styles = {
   modal: {
     width: '600px',
-    height: '950px',
+    height: '1100px',
     backgroundColor: 'white',
     display: 'block',
     margin: '50px auto'
   },
   imageSize: {
     width: '500px',
-    height: '300px',
+    height: '400px',
     display: 'block',
     paddingTop: '50px',
     margin: '10px auto'
