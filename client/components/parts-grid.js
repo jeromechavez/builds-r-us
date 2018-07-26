@@ -95,7 +95,6 @@ export default class PartsGrid extends Component {
           </Grid>
         </div>
       </div>
-
     )
   }
 }
