@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import parseHash from './util/hash'
 import GridView from './views/grid-view'
+import NavBar from './components/nav-bar'
 
 export default class App extends Component {
   constructor(props) {
@@ -33,6 +34,11 @@ export default class App extends Component {
   }
 
   render() {
-    return this.renderView()
+    return (
+      <div>
+        <NavBar/>
+        {this.renderView()}
+      </div>
+    )
   }
 }
