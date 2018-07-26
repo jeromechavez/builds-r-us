@@ -6,6 +6,7 @@ import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import PartDetail from './part-detail'
+import BuildParts from './build-parts'
 
 
 const styles = {
@@ -73,25 +74,28 @@ export default class PartsGrid extends Component {
       ? parts.filter(part => part.type === type)
       : parts
     return (
-      <div style={styles.root}>
-        <Grid container spacing={24}>
-          <PartDetail open={open} part={part} onClose={this.handleClose} />
-          {filteredParts.map(part => (
-            <Grid item xs={3} key={part.productId}>
-              <Card className="card" data-number={ part.productId }>
-                <img src={part.imageURL} style={styles.imageSize} alt={part.name} />
-                <CardContent>
-                  <h3 style={styles.header}>{part.name}</h3>
-                  <Typography component="p">{part.brand}</Typography>
-                </CardContent>
-                <CardActions>
-                  <Button size="small" color="secondary" onClick={this.handleClick}>Learn More</Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+      <div>
+        <PartDetail open={open} part={part} onClose={this.handleClose} />
+        <div style={styles.root}>
+          <Grid container spacing={24}>
+            {filteredParts.map(part => (
+              <Grid item xs={3} key={part.productId}>
+                <Card className="card" data-number={part.productId}>
+                  <img src={part.imageURL} style={styles.imageSize} alt={part.name} />
+                  <CardContent>
+                    <h3 style={styles.header}>{part.name}</h3>
+                    <Typography component="p">{part.brand}</Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small" color="primary" onClick={this.handleClick}>Learn More</Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </div>
       </div>
+
     )
   }
 }
