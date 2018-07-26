@@ -27,7 +27,7 @@ export default class PartFilter extends React.Component {
           <Tabs 
             value={this.state.value} 
             onChange={this.handleChange} 
-            indicatorColor="secondary"
+            indicatorColor="primary"
             textColor="inherit"
             scrollable
           >

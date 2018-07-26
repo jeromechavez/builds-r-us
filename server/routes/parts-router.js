@@ -11,5 +11,13 @@ module.exports = function partsRouter(collection) {
       .catch(err => next(err))
   })
 
+  router.get('/:type', (req, res, next) => {
+    collection
+      .find({ type: req.params.type })
+      .toArray()
+      .then(parts => res.json(parts))
+      .catch(err => next(err))
+  })
+
   return router
 }

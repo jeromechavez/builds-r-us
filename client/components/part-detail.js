@@ -1,24 +1,25 @@
 import React from 'react'
 import Modal from '@material-ui/core/Modal'
+import Dialog from '@material-ui/core/Dialog'
+import DialogContent from '@material-ui/core/DialogContent'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-import Grid from '@material-ui/core/Grid'
 
 const styles = {
   modal: {
     width: '600px',
-    height: '950px',
+    height: '1100px',
     backgroundColor: 'white',
     display: 'block',
     margin: '50px auto'
   },
   imageSize: {
     width: '500px',
-    height: '300px',
+    height: '400px',
     display: 'block',
     paddingTop: '50px',
     margin: '10px auto'
@@ -42,8 +43,8 @@ export default function PartDetail({ open, part, onClose}) {
   if (!part) return null
   const { specs } = part
   return (
-    <Modal open={ open } onClose={ onClose } >
-      <Paper style= { styles.modal }>
+    <Dialog open={ open } onClose={ onClose } scroll="paper">
+      <DialogContent>
         <img src={part.imageURL} style={styles.imageSize} />
         <div style={styles.title}>
           <h2>{'Name: ' + part.name}</h2>
@@ -70,7 +71,7 @@ export default function PartDetail({ open, part, onClose}) {
             </TableBody>
           </Table>
         </Paper>
-      </Paper>
-    </Modal>
+      </DialogContent>
+    </Dialog>
   )
 }
