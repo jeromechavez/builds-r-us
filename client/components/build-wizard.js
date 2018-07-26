@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
-import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
 import BuildParts from './build-parts'
+import ResetButton from './reset-button'
+import BuildButtons from './build-buttons'
 
 function getSteps() {
   return [
@@ -32,6 +32,7 @@ const partType = [
 
 const initialState = {
   activeStep: 0,
+  added: false,
   build: {
     processor: null,
     motherboard: null,
@@ -41,7 +42,8 @@ const initialState = {
     powersupply: null,
     cooling: null,
     storage: null
-  }
+  },
+  part: []
 }
 
 export default class BuildWizard extends Component {
@@ -136,24 +138,15 @@ export default class BuildWizard extends Component {
           })}
         </Stepper>
         <div>
-          {activeStep === steps.length ? (
-            <div>
-              <Typography>All steps completed - you&quot;re finished!</Typography>
-              <Button onClick={this.handleReset}>Reset</Button>
-            </div>
-          ) : (
-              <div>
-                <Button
-                  disabled={activeStep === 0}
-                  onClick={this.handleBack}
-                >
-                  Back
-              </Button>
-                <Button variant="contained" color="primary" disabled={disabled} onClick={this.handleNext}>
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                </Button>
-              </div>
-            )}
+          {activeStep === steps.length 
+            ? <ResetButton onClick={ this.handleReset }/>
+            : <BuildButtons 
+                activeStep={ activeStep } 
+                onBack={ this.handleBack } 
+                onNext={ this.handleNext }
+                disabled={ disabled }
+                steps={ steps } />
+          }
         </div>
         <BuildParts parts={parts} added={added} onAdd={this.handleAddPart} />
       </div>
