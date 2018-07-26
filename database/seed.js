@@ -907,7 +907,7 @@ module.exports = [
     productId: 22,
     brand: 'MSI',
     name: 'Z370-A PRO',
-    imageURL: 'https://c1.neweggimages.com/NeweggImage/ProductImageCompressAll1280/13-144-115-Z04.jpg',
+    imageURL: 'https://c1.neweggimages.com/NeweggImage/ProductImageCompressAll1280/13-144-115-Z01.jpg',
     newegg: 'https://www.newegg.com/Product/Product.aspx?Item=N82E16813144115',
     price: 118.32,
     specs: [
