@@ -35,16 +35,7 @@ const initialState = {
   activeStep: 0,
   added: false,
   currentBuild: false,
-  build: {
-    processor: null,
-    motherboard: null,
-    memory: null,
-    videocard: null,
-    case: null,
-    powersupply: null,
-    cooling: null,
-    storage: null
-  },
+  build: null,
   parts: []
 }
 
