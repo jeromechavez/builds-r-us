@@ -6,11 +6,9 @@ import NavBar from './components/nav-bar'
 
 const styles = {
   root: {
-    width: '100%'
+    width: '100vw'
   },
   stretch: {
-    marginRight: '-1%',
-    marginLeft: '-1%',
     marginTop: '-1%'
   }
 }
