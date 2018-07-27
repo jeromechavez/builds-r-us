@@ -35,7 +35,7 @@ export default class PartFilter extends React.Component {
             <Tab label="Processors" href="#parts?type=processor" />
             <Tab label="Cooling" href="#parts?type=cooling"/>
             <Tab label="Motherboards" href="#parts?type=motherboard"/>
-            <Tab label="Video Cards" href="#parts?type=GPU" />
+            <Tab label="Video Cards" href="#parts?type=videocard" />
             <Tab label="Cases" href="#parts?type=case"/>
             <Tab label="Memory(RAM)" href="#parts?type=memory"/>
             <Tab label="Storage" href="#parts?type=storage"/>
