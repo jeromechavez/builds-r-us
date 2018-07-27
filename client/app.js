@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import parseHash from './util/hash'
 import GridView from './views/grid-view'
 import BuildView from './views/build-view'
+import BuildCompleteView from './views/build-complete-view'
 import NavBar from './components/nav-bar'
 
 const styles = {
@@ -39,10 +40,16 @@ export default class App extends Component {
     return <BuildView/>
   }
 
+  renderBuildComplete() {
+    return <BuildCompleteView/>
+  }
+
   renderView() {
     switch (this.state.path) {
       case 'build':
         return this.renderBuildRig()
+      case 'buildcomplete':
+        return this.renderBuildComplete()
       case 'parts':
         return this.renderPartsGrid()
       default:
