@@ -14,8 +14,7 @@ const styles = {
     backgroundRepeat: 'no-repeat'
   },
   stretch: {
-    marginRight: '-5%',
-    marginLeft: '-5%'
+    width: '100vw'
   }
 }
 
