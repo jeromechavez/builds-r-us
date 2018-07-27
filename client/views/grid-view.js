@@ -2,13 +2,20 @@ import React from 'react'
 import PartsGrid from '../components/parts-grid.js'
 import PartFilter from '../components/part-filter'
 
+const styles = {
+  stretch: {
+    marginRight: '-1%',
+    marginLeft: '-1%'
+  }
+}
+
 export default function GridView({ type }) {
   return (
     <div>
-      <div className="row">
+      <div style={styles.stretch}>
         <PartFilter/>
-        <PartsGrid type={type}/>
       </div>
+      <PartsGrid type={type}/>
     </div>
   )
 }
