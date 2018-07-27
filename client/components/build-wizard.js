@@ -5,6 +5,7 @@ import StepLabel from '@material-ui/core/StepLabel'
 import BuildParts from './build-parts'
 import ResetButton from './reset-button'
 import BuildButtons from './build-buttons'
+import CurrentBuild from './build-current'
 
 function getSteps() {
   return [
@@ -23,7 +24,7 @@ const partType = [
   'processor',
   'motherboard',
   'memory',
-  'GPU',
+  'videocard',
   'case',
   'powersupply',
   'cooling',
@@ -33,6 +34,7 @@ const partType = [
 const initialState = {
   activeStep: 0,
   added: false,
+  currentBuild: false,
   build: {
     processor: null,
     motherboard: null,
@@ -53,14 +55,16 @@ export default class BuildWizard extends Component {
     this.handleBack = this.handleBack.bind(this)
     this.handleReset = this.handleReset.bind(this)
     this.handleAddPart = this.handleAddPart.bind(this)
+    this.handleShowBuild = this.handleShowBuild.bind(this)
     this.state = {
       activeStep: 0,
       added: false,
+      currentBuild: false,
       build: {
         processor: null,
         motherboard: null,
         memory: null,
-        GPU: null,
+        videocard: null,
         case: null,
         powersupply: null,
         cooling: null,
@@ -121,13 +125,18 @@ export default class BuildWizard extends Component {
     const part = parts.find(part => part.productId === number)
     this.setState({ build: this.setPart(build, part), added: true })
   }
+  handleShowBuild() {
+    const { currentBuild } = this.state
+    this.setState({ currentBuild: !currentBuild})
+  }
 
   render() {
-    const { activeStep, parts, build, added } = this.state
+    const { activeStep, parts, build, added, currentBuild } = this.state
     const steps = getSteps()
     const disabled = (build[partType[activeStep]]) ? false : true
     return (
       <div>
+        <CurrentBuild open={ currentBuild } build={ build } onClose={ this.handleShowBuild }/>
         <Stepper activeStep={activeStep} alternativeLabel>
           { steps.map(label => {
             return (
@@ -145,7 +154,8 @@ export default class BuildWizard extends Component {
                 onBack={ this.handleBack } 
                 onNext={ this.handleNext }
                 disabled={ disabled }
-                steps={ steps } />
+                steps={ steps }
+                showBuild={ this.handleShowBuild } />
           }
         </div>
         <BuildParts parts={parts} added={added} onAdd={this.handleAddPart} />
