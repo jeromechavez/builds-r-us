@@ -1424,7 +1424,7 @@ module.exports = [
     ]
   },
   {
-    type: 'GPU',
+    type: 'videocard',
     productId: 34,
     brand: 'GIGABYTE',
     chipset: 'NVIDIA',
@@ -1468,7 +1468,7 @@ module.exports = [
     ]
   },
   {
-    type: 'GPU',
+    type: 'videocard',
     productId: 35,
     brand: 'EVGA',
     chipset: 'NVIDIA',
@@ -1512,7 +1512,7 @@ module.exports = [
     ]
   },
   {
-    type: 'GPU',
+    type: 'videocard',
     productId: 36,
     brand: 'GIGABYTE',
     chipset: 'NVIDIA',
@@ -1556,7 +1556,7 @@ module.exports = [
     ]
   },
   {
-    type: 'GPU',
+    type: 'videocard',
     productId: 37,
     brand: 'SAPPHIRE',
     chipset: 'AMD',
@@ -1600,7 +1600,7 @@ module.exports = [
     ]
   },
   {
-    type: 'GPU',
+    type: 'videocard',
     productId: 38,
     brand: 'MSI',
     chipset: 'NVIDIA',
@@ -1644,7 +1644,7 @@ module.exports = [
     ]
   },
   {
-    type: 'GPU',
+    type: 'videocard',
     productId: 39,
     brand: 'GIGABYTE',
     chipset: 'AMD', 
@@ -1688,7 +1688,7 @@ module.exports = [
     ]
   },
   {
-    type: 'GPU',
+    type: 'videocard',
     productId: 40,
     brand: 'GIGABYTE',
     chipset: 'AMD',
@@ -1732,7 +1732,7 @@ module.exports = [
     ]
   },
   {
-    type: 'GPU',
+    type: 'videocard',
     productId: 41,
     brand: 'ASUS',
     chipset: 'AMD',

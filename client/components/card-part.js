@@ -23,14 +23,14 @@ const styles = {
   }
 }
 export default function CardPart({ part, type, disabled, onClick, action }) {
-  const subheaderType = (type === 'brand') ? part.brand : part.price
+  const subheaderType = (type === 'brand') ? part.brand : '$' + part.price
   const buttonAction = (action === 'build') ? 'Add to Build' : 'Learn More'
   return (
     <Card className="card" data-number={ part.productId }>
       <img src={ part.imageURL } style={ styles.imageSize } alt={ part.name }/>
       <CardContent>
         <h3 style={ styles.header }>{ part.name }</h3>
-        <Typography component="p">{ '$' + subheaderType }</Typography>
+        <Typography component="p">{ subheaderType }</Typography>
       </CardContent>
       <CardActions>
         <Button size="small" color="primary" disabled={ disabled } onClick={ onClick }>

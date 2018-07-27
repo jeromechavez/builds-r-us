@@ -7,6 +7,11 @@ import NavBar from './components/nav-bar'
 const styles = {
   root: {
     width: '100%'
+  },
+  stretch: {
+    marginRight: '-1%',
+    marginLeft: '-1%',
+    marginTop: '-1%'
   }
 }
 
@@ -50,7 +55,9 @@ export default class App extends Component {
   render() {
     return (
       <div style={styles.root}>
-        <NavBar/>
+        <div style={styles.stretch}>
+          <NavBar />
+        </div>
         {this.renderView()}
       </div>
     )
