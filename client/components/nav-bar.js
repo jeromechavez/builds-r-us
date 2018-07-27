@@ -23,6 +23,7 @@ export default function NavBar(props) {
           <IconButton color="inherit"><Home/></IconButton>
           <Button color="inherit" href="#parts">Parts</Button>
           <Button color="inherit" href="#build">Build A Rig</Button>
+          <Button color="inherit" heef="#buildcomplete">View Build</Button>
         </ToolBar>
       </AppBar>
   )
