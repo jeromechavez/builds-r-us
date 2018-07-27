@@ -35,16 +35,7 @@ const initialState = {
   activeStep: 0,
   added: false,
   currentBuild: false,
-  build: {
-    processor: null,
-    motherboard: null,
-    memory: null,
-    GPU: null,
-    case: null,
-    powersupply: null,
-    cooling: null,
-    storage: null
-  },
+  build: [],
   part: []
 }
 
@@ -60,16 +51,7 @@ export default class BuildWizard extends Component {
       activeStep: 0,
       added: false,
       currentBuild: false,
-      build: {
-        processor: null,
-        motherboard: null,
-        memory: null,
-        videocard: null,
-        case: null,
-        powersupply: null,
-        cooling: null,
-        storage: null
-      },
+      build: [],
       parts: []
     }
   }
@@ -99,13 +81,6 @@ export default class BuildWizard extends Component {
       .catch(err => console.error(err))
   }
 
-  setPart(build, part) {
-    return {
-      ...build,
-      [part.type]: part
-    }
-  }
-
   handleNext() {
     const { activeStep } = this.state
     this.setState({ activeStep: activeStep + 1, added: false })
@@ -123,7 +98,8 @@ export default class BuildWizard extends Component {
   handleAddPart(number) {
     const { parts, build } = this.state
     const part = parts.find(part => part.productId === number)
-    this.setState({ build: this.setPart(build, part), added: true })
+    const updateBuild = [...build, part]
+    this.setState({ build: updateBuild, added: true })
   }
   handleShowBuild() {
     const { currentBuild } = this.state
@@ -133,7 +109,7 @@ export default class BuildWizard extends Component {
   render() {
     const { activeStep, parts, build, added, currentBuild } = this.state
     const steps = getSteps()
-    const disabled = (build[partType[activeStep]]) ? false : true
+    const disabled = (added) ? false : true
     return (
       <div>
         <CurrentBuild open={ currentBuild } build={ build } onClose={ this.handleShowBuild }/>
