@@ -1,5 +1,4 @@
 import React from 'react'
-import Modal from '@material-ui/core/Modal'
 import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
 import Table from '@material-ui/core/Table'
