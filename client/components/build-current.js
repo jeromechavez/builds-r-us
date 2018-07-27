@@ -6,6 +6,8 @@ import TableCell from '@material-ui/core/TableCell'
 import TableRow from '@material-ui/core/TableRow'
 import TableHead from '@material-ui/core/TableHead'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import getBuildArray from '../util/get-build-array'
+import { access } from 'fs';
 
 const theme = createMuiTheme({
   overrides: {
@@ -45,8 +47,9 @@ const styles = {
 }
 
 export default function CurrentBuild({ open, onClose, build }) {
-  if (build.length === 0) return null
-  const totalPrice = build.reduce((acc, part) => acc + part.price, 0)
+  if (!build) return null
+  const buildArray = getBuildArray(build)
+  const totalPrice = buildArray.reduce((acc, part) => acc + part.price, 0)
   return (
     <MuiThemeProvider theme={ theme} >
       <Drawer anchor="right" open={ open } onClose= { onClose }>
@@ -60,7 +63,7 @@ export default function CurrentBuild({ open, onClose, build }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {build.map((part, index) => {
+            {buildArray.map((part, index) => {
               return (
                 <TableRow key={index}>
                   <TableCell>{part.brand + ' ' + part.name + ` (${part.type})`}</TableCell>
@@ -70,9 +73,10 @@ export default function CurrentBuild({ open, onClose, build }) {
             })}
           </TableBody>
         </Table>
-        <h3 style={styles.totalPrice}>Total Price: ${parseFloat(totalPrice)}</h3>
+        <h3 style={styles.totalPrice}>'Total Price: $ {parseFloat(totalPrice)}</h3>
         </div>
       </Drawer>
     </MuiThemeProvider>
   )
 }
+
