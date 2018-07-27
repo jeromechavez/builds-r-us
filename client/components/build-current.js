@@ -73,7 +73,7 @@ export default function CurrentBuild({ open, onClose, build }) {
             })}
           </TableBody>
         </Table>
-        <h3 style={styles.totalPrice}>'Total Price: $ {parseFloat(totalPrice)}</h3>
+        <h3 style={styles.totalPrice}>'Total Price: $ {totalPrice.toFixed(2)}</h3>
         </div>
       </Drawer>
     </MuiThemeProvider>
