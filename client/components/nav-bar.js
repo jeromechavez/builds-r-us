@@ -8,17 +8,22 @@ import ToolBar from '@material-ui/core/ToolBar'
 const styles = {
   root: {
     backgroundColor: 'black'
+  },
+  logo: {
+    width: '150px',
+    height: '40px',
   }
 }
 
 export default function NavBar(props) {
   return (
-    <AppBar position="static" style={ styles.root }>
-      <ToolBar>
-        <IconButton color="inherit"><Home/></IconButton>
-        <Button color="inherit" href="#parts">Parts</Button>
-        <Button color="inherit" href="#build">Build A Rig</Button>
-      </ToolBar>
-    </AppBar>
+      <AppBar position="static" style={ styles.root }>
+        <ToolBar>
+          <img src="./images/app-logo.png" style={styles.logo} />
+          <IconButton color="inherit"><Home/></IconButton>
+          <Button color="inherit" href="#parts">Parts</Button>
+          <Button color="inherit" href="#build">Build A Rig</Button>
+        </ToolBar>
+      </AppBar>
   )
 }
