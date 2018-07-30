@@ -17,6 +17,7 @@ const styles = {
 export default class App extends Component {
   constructor(props) {
     super(props)
+    this.handleBuild = this.handleBuild.bind(this)
     const { path, params } = parseHash(window.location.hash)
     this.state = { 
       path: path, 
@@ -32,17 +33,21 @@ export default class App extends Component {
     })
   }
 
+  handleBuild(build) {
+    this.setState({ build: build })
+  }
+
   renderPartsGrid() {
     const { type } = this.state.params 
     return <GridView type={ type }/>
   }
 
   renderBuildRig() {
-    return <BuildView/>
+    return <BuildView build={this.handleBuild}/>
   }
 
   renderBuildComplete() {
-    return <BuildCompleteView/>
+    return <BuildCompleteView parts={this.state.build}/>
   }
 
   renderView() {
