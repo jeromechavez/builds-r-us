@@ -50,7 +50,7 @@ export default function CurrentBuild({ open, onClose, build }) {
   const buildArray = getBuildArray(build)
   const totalPrice = buildArray.reduce((acc, part) => acc + part.price, 0)
   return (
-    <MuiThemeProvider theme={ theme} >
+    <MuiThemeProvider theme={ theme } >
       <Drawer anchor="right" open={ open } onClose= { onClose }>
       <div style={styles.table}>
         <div style={styles.image}></div>
@@ -72,7 +72,7 @@ export default function CurrentBuild({ open, onClose, build }) {
             })}
           </TableBody>
         </Table>
-        <h3 style={styles.totalPrice}>'Total Price: $ {totalPrice.toFixed(2)}</h3>
+        <h3 style={styles.totalPrice}>Total Price: $ {totalPrice.toFixed(2)}</h3>
         </div>
       </Drawer>
     </MuiThemeProvider>
