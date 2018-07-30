@@ -7,7 +7,6 @@ import TableRow from '@material-ui/core/TableRow'
 import TableHead from '@material-ui/core/TableHead'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import getBuildArray from '../util/get-build-array'
-import { access } from 'fs';
 
 const theme = createMuiTheme({
   overrides: {

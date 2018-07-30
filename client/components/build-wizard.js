@@ -81,16 +81,17 @@ export default class BuildWizard extends Component {
       .catch(err => console.error(err))
   }
 
-  handleNext() {
-    const { activeStep } = this.state
-    this.setState({ activeStep: activeStep + 1, added: false })
-  }
-
   setPart(build, part) {
     return {
       ...build,
       [part.type]: part
     }
+  }
+
+  handleNext() {
+    const { activeStep, build } = this.state
+    console.log(build)
+    this.setState({ activeStep: activeStep + 1, added: false })
   }
 
   handleBack() {
@@ -119,7 +120,7 @@ export default class BuildWizard extends Component {
     return (
       <div>
         <CurrentBuild open={ currentBuild } build={ build } onClose={ this.handleShowBuild }/>
-        <Stepper activeStep={activeStep} alternativeLabel>
+        <Stepper activeStep={ activeStep } alternativeLabel>
           { steps.map(label => {
             return (
               <Step key={ label }>
