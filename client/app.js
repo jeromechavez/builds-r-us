@@ -2,15 +2,14 @@ import React, { Component } from 'react'
 import parseHash from './util/hash'
 import GridView from './views/grid-view'
 import BuildView from './views/build-view'
+import BuildCompleteView from './views/build-complete-view'
 import NavBar from './components/nav-bar'
 
 const styles = {
   root: {
-    width: '100%'
+    width: '100vw'
   },
   stretch: {
-    marginRight: '-1%',
-    marginLeft: '-1%',
     marginTop: '-1%'
   }
 }
@@ -18,10 +17,12 @@ const styles = {
 export default class App extends Component {
   constructor(props) {
     super(props)
+    this.handleBuild = this.handleBuild.bind(this)
     const { path, params } = parseHash(window.location.hash)
     this.state = { 
       path: path, 
-      params: params
+      params: params,
+      build: null
     }
   }
 
@@ -32,19 +33,29 @@ export default class App extends Component {
     })
   }
 
+  handleBuild(build) {
+    this.setState({ build: build })
+  }
+
   renderPartsGrid() {
     const { type } = this.state.params 
     return <GridView type={ type }/>
   }
 
   renderBuildRig() {
-    return <BuildView/>
+    return <BuildView build={this.handleBuild}/>
+  }
+
+  renderBuildComplete() {
+    return <BuildCompleteView parts={this.state.build}/>
   }
 
   renderView() {
     switch (this.state.path) {
       case 'build':
         return this.renderBuildRig()
+      case 'buildcomplete':
+        return this.renderBuildComplete()
       case 'parts':
         return this.renderPartsGrid()
       default:

@@ -14,18 +14,17 @@ const styles = {
     backgroundRepeat: 'no-repeat'
   },
   stretch: {
-    marginRight: '-5%',
-    marginLeft: '-5%'
+    width: '100vw'
   }
 }
 
-export default function BuildView() {
+export default function BuildView({ build }) {
   return (
     <div>
       <div style={styles.stretch}>
         <div style={styles.header}></div>
       </div>
-      <BuildWizard />
+      <BuildWizard build={ build } />
     </div>
   )
 }

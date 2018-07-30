@@ -35,8 +35,8 @@ const initialState = {
   activeStep: 0,
   added: false,
   currentBuild: false,
-  build: [],
-  part: []
+  build: null,
+  parts: []
 }
 
 export default class BuildWizard extends Component {
@@ -50,8 +50,8 @@ export default class BuildWizard extends Component {
     this.state = {
       activeStep: 0,
       added: false,
-      currentBuild: false,
-      build: [],
+      showCurrentBuild: false,
+      build: null,
       parts: []
     }
   }
@@ -68,22 +68,27 @@ export default class BuildWizard extends Component {
       .catch(err => console.error(err))
   }
 
-  componentDidUpdate() {
-    const { activeStep } = this.state
+  setPart(build, part) {
+    return {
+      ...build,
+      [part.type]: part
+    }
+  }
+
+  handleNext() {
+    const { activeStep, build } = this.state
+    if (activeStep === 7) {
+      this.props.build(build)
+    }
     const req = {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' }
     }
 
-    fetch('computer-parts/' + partType[activeStep], req)
+    fetch('computer-parts/' + partType[activeStep + 1], req)
       .then(res => res.ok && res.json())
-      .then(data => this.setState({ parts: data }))
+      .then(data => this.setState({ parts: data, activeStep: activeStep + 1, added: false }))
       .catch(err => console.error(err))
-  }
-
-  handleNext() {
-    const { activeStep } = this.state
-    this.setState({ activeStep: activeStep + 1, added: false })
   }
 
   handleBack() {
@@ -98,22 +103,21 @@ export default class BuildWizard extends Component {
   handleAddPart(number) {
     const { parts, build } = this.state
     const part = parts.find(part => part.productId === number)
-    const updateBuild = [...build, part]
-    this.setState({ build: updateBuild, added: true })
+    this.setState({ build: this.setPart(build, part), added: true })
   }
   handleShowBuild() {
-    const { currentBuild } = this.state
-    this.setState({ currentBuild: !currentBuild})
+    const { showCurrentBuild } = this.state
+    this.setState({ showCurrentBuild: !showCurrentBuild})
   }
 
   render() {
-    const { activeStep, parts, build, added, currentBuild } = this.state
+    const { activeStep, parts, build, added, showCurrentBuild } = this.state
     const steps = getSteps()
     const disabled = (added) ? false : true
     return (
       <div>
-        <CurrentBuild open={ currentBuild } build={ build } onClose={ this.handleShowBuild }/>
-        <Stepper activeStep={activeStep} alternativeLabel>
+        <CurrentBuild open={ showCurrentBuild } build={ build } onClose={ this.handleShowBuild }/>
+        <Stepper activeStep={ activeStep } alternativeLabel>
           { steps.map(label => {
             return (
               <Step key={ label }>

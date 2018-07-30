@@ -4,8 +4,7 @@ import PartFilter from '../components/part-filter'
 
 const styles = {
   stretch: {
-    marginRight: '-1%',
-    marginLeft: '-1%'
+    width: '100vw'
   }
 }
 
