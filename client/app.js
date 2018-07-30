@@ -20,7 +20,8 @@ export default class App extends Component {
     const { path, params } = parseHash(window.location.hash)
     this.state = { 
       path: path, 
-      params: params
+      params: params,
+      build: null
     }
   }
 
