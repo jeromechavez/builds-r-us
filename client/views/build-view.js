@@ -18,13 +18,13 @@ const styles = {
   }
 }
 
-export default function BuildView() {
+export default function BuildView({ build }) {
   return (
     <div>
       <div style={styles.stretch}>
         <div style={styles.header}></div>
       </div>
-      <BuildWizard />
+      <BuildWizard build={ build } />
     </div>
   )
 }

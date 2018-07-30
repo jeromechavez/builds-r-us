@@ -50,7 +50,7 @@ export default class BuildWizard extends Component {
     this.state = {
       activeStep: 0,
       added: false,
-      currentBuild: false,
+      showCurrentBuild: false,
       build: null,
       parts: []
     }
@@ -68,19 +68,6 @@ export default class BuildWizard extends Component {
       .catch(err => console.error(err))
   }
 
-  componentDidUpdate() {
-    const { activeStep } = this.state
-    const req = {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
-    }
-
-    fetch('computer-parts/' + partType[activeStep], req)
-      .then(res => res.ok && res.json())
-      .then(data => this.setState({ parts: data }))
-      .catch(err => console.error(err))
-  }
-
   setPart(build, part) {
     return {
       ...build,
@@ -90,8 +77,18 @@ export default class BuildWizard extends Component {
 
   handleNext() {
     const { activeStep, build } = this.state
-    console.log(build)
-    this.setState({ activeStep: activeStep + 1, added: false })
+    if (activeStep === 7) {
+      this.props.build(build)
+    }
+    const req = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    }
+
+    fetch('computer-parts/' + partType[activeStep + 1], req)
+      .then(res => res.ok && res.json())
+      .then(data => this.setState({ parts: data, activeStep: activeStep + 1, added: false }))
+      .catch(err => console.error(err))
   }
 
   handleBack() {
@@ -109,17 +106,17 @@ export default class BuildWizard extends Component {
     this.setState({ build: this.setPart(build, part), added: true })
   }
   handleShowBuild() {
-    const { currentBuild } = this.state
-    this.setState({ currentBuild: !currentBuild})
+    const { showCurrentBuild } = this.state
+    this.setState({ showCurrentBuild: !showCurrentBuild})
   }
 
   render() {
-    const { activeStep, parts, build, added, currentBuild } = this.state
+    const { activeStep, parts, build, added, showCurrentBuild } = this.state
     const steps = getSteps()
     const disabled = (added) ? false : true
     return (
       <div>
-        <CurrentBuild open={ currentBuild } build={ build } onClose={ this.handleShowBuild }/>
+        <CurrentBuild open={ showCurrentBuild } build={ build } onClose={ this.handleShowBuild }/>
         <Stepper activeStep={ activeStep } alternativeLabel>
           { steps.map(label => {
             return (
