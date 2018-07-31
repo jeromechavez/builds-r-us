@@ -14,8 +14,6 @@ const styles = {
 export default class PartsGrid extends Component {
   constructor(props) {
     super(props)
-    this.handleClick = this.handleClick.bind(this)
-    this.handleClose = this.handleClose.bind(this)
     this.state = {
       parts: [],
       part: null,
@@ -35,7 +33,7 @@ export default class PartsGrid extends Component {
       .catch(err => console.error(err))
   }
 
-  handleClick(event) {
+  handleClick = (event) => {
     const $card = event.target.closest('.card')
     if (!$card) return
     const number = parseInt($card.getAttribute('data-number'), 10)
@@ -43,7 +41,7 @@ export default class PartsGrid extends Component {
     this.setState({ open: true, part: part})
   }
 
-  handleClose() {
+  handleClose = () => {
     this.setState({ open: false })
   }
 

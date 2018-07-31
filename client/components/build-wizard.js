@@ -47,11 +47,6 @@ const req = {
 export default class BuildWizard extends Component {
   constructor(props) {
     super(props)
-    this.handleNext = this.handleNext.bind(this)
-    this.handleBack = this.handleBack.bind(this)
-    this.handleReset = this.handleReset.bind(this)
-    this.handleAddPart = this.handleAddPart.bind(this)
-    this.handleShowBuild = this.handleShowBuild.bind(this)
     this.state = {
       activeStep: 0,
       added: false,
@@ -80,7 +75,7 @@ export default class BuildWizard extends Component {
     }
   }
 
-  handleNext() {
+  handleNext = () => {
     const { activeStep, build } = this.state
     this.props.build(build)
 
@@ -90,7 +85,7 @@ export default class BuildWizard extends Component {
       .catch(err => console.error(err))
   }
 
-  handleBack() {
+  handleBack = () => {
     const { activeStep, build } = this.state
     this.props.build(build)
 
@@ -100,16 +95,16 @@ export default class BuildWizard extends Component {
       .catch(err => console.error(err))
   }
 
-  handleReset() {
+  handleReset = () => {
     this.setState(initialState)
   }
 
-  handleAddPart(number) {
+  handleAddPart = (number) => {
     const { parts, build } = this.state
     const part = parts.find(part => part.productId === number)
     this.setState({ build: this.setPart(build, part), added: true })
   }
-  handleShowBuild() {
+  handleShowBuild = () => {
     const { showCurrentBuild } = this.state
     this.setState({ showCurrentBuild: !showCurrentBuild})
   }

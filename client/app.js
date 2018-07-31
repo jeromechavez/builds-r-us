@@ -17,7 +17,6 @@ const styles = {
 export default class App extends Component {
   constructor(props) {
     super(props)
-    this.handleBuild = this.handleBuild.bind(this)
     const { path, params } = parseHash(window.location.hash)
     this.state = { 
       path: path, 
@@ -33,7 +32,7 @@ export default class App extends Component {
     })
   }
   
-  handleBuild(build) {
+  handleBuild = (build) => {
     this.setState({ build: build })
   }
 
