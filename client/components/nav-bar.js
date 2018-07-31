@@ -19,8 +19,7 @@ export default function NavBar(props) {
   return (
       <AppBar position="static" style={ styles.root }>
         <ToolBar>
-          <img src="./images/app-logo.png" style={styles.logo} />
-          <IconButton color="inherit"><Home/></IconButton>
+          <Button color="inherit"><img src="./images/app-logo.png" style={styles.logo} /></Button>
           <Button color="inherit" href="#parts">Parts</Button>
           <Button color="inherit" href="#build">Build A Rig</Button>
           <Button color="inherit" href="#buildcomplete">View Build</Button>
