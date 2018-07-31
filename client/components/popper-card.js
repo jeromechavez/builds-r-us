@@ -57,6 +57,7 @@ export default function PopperCard({ open, anchorEl, onClose, parts, type, onEdi
           </CardContent>
           <div style={ styles.controls }>
               <IconButton onClick={onEdit}><i className="material-icons">edit</i></IconButton>
+              <IconButton color="secondary"><i class="material-icons">delete</i></IconButton>
           </div>
         </div>
         <div style={styles.container}>
