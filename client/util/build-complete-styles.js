@@ -1,10 +1,10 @@
 module.exports = {
   paper: {
-    width: '75vw',
-    height: '800px',
+    width: '64vw',
+    height: '790px',
     margin: '10vh auto auto',
-    backgroundImage: `url('./images/view-build-background.png')`,
-    backgroundSize: 'cover',
+    backgroundImage: `url('./images/view-build-cropped.png')`,
+    backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     position: 'relative'
@@ -12,7 +12,7 @@ module.exports = {
   processor: {
     position: 'absolute',
     top: '250px',
-    left: '310px'
+    left: '275px'
   },
   motherboard: {
     position: 'absolute',
@@ -22,31 +22,31 @@ module.exports = {
   memory: {
     position: 'absolute',
     top: '250px',
-    left: '400px'
+    left: '375px'
   },
   videocard: {
     position: 'absolute',
-    top: '400px',
-    left: '100px'
+    top: '380px',
+    left: '125px'
   },
   case: {
     position: 'absolute',
     left: '40%',
-    top: '10px'
+    top: '20px'
   },
   powersupply: {
     position: 'absolute',
-    bottom: '10px',
-    left: '100px'
+    bottom: '75px',
+    left: '50px'
   },
   cooling: {
     position: 'absolute',
     top: '350px',
-    right: '150px'
+    right: '100px'
   },
   storage: {
     position: 'absolute',
-    bottom: '50px',
-    right: '200px'
+    bottom: '100px',
+    right: '175px'
   }
 }
