@@ -5,6 +5,7 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Popover from '@material-ui/core/Popover'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
+import PopperButtons from './popper-buttons'
 
 const styles = {
   card: {
@@ -57,8 +58,7 @@ export default function PopperCard({ open, anchorEl, onClose, parts, type, onEdi
             <Typography variant="subheading" color="secondary">{ '$' + part.price.toFixed(2) }</Typography>
           </CardContent>
           <div style={ styles.controls }>
-              <IconButton onClick={onEdit}><i className="material-icons">edit</i></IconButton>
-              <IconButton onClick={onDelete} color="secondary"><i className="material-icons">delete</i></IconButton>
+            <PopperButtons onEdit= {onEdit} onDelete={onDelete} part={part}/>
           </div>
         </div>
         <div style={styles.container}>
