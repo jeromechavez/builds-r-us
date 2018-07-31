@@ -39,6 +39,11 @@ const initialState = {
   parts: []
 }
 
+const req = {
+  method: 'GET',
+  headers: { 'Content-Type': 'application/json' }
+}
+
 export default class BuildWizard extends Component {
   constructor(props) {
     super(props)
@@ -77,13 +82,7 @@ export default class BuildWizard extends Component {
 
   handleNext() {
     const { activeStep, build } = this.state
-    if (activeStep === 7) {
-      this.props.build(build)
-    }
-    const req = {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
-    }
+    this.props.build(build)
 
     fetch('computer-parts/' + partType[activeStep + 1], req)
       .then(res => res.ok && res.json())
@@ -92,8 +91,13 @@ export default class BuildWizard extends Component {
   }
 
   handleBack() {
-    const { activeStep } = this.state
-    this.setState({ activeStep: activeStep - 1 })
+    const { activeStep, build } = this.state
+    this.props.build(build)
+
+    fetch('computer-parts/' + partType[activeStep - 1], req)
+      .then(res => res.ok && res.json())
+      .then(data => this.setState({ parts: data, activeStep: activeStep - 1, added: false }))
+      .catch(err => console.error(err))
   }
 
   handleReset() {

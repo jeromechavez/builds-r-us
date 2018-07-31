@@ -32,7 +32,7 @@ export default class App extends Component {
       this.setState({ path, params })
     })
   }
-
+  
   handleBuild(build) {
     this.setState({ build: build })
   }

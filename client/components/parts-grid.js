@@ -8,21 +8,6 @@ const styles = {
   root: {
     flexGrow: 1,
     marginTop: '20px'
-  },
-  imageSize: {
-    height: '180px',
-    width: '250px',
-    paddingTop: '10px',
-    display: 'block',
-    marginLeft: 'auto',
-    marginRight: 'auto'
-  },
-  header: {
-    fontFamily: 'Roboto',
-    width: '250px',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis'
   }
 }
 
