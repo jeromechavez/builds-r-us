@@ -13,6 +13,7 @@ export default class BuildMap extends Component {
     this.handleEdit = this.handleEdit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleEditClose = this.handleEditClose.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
     this.state = {
       anchorEl: null,
       partType: null,
@@ -28,11 +29,19 @@ export default class BuildMap extends Component {
     this.setState({ build: parts })
   }
 
-  setPart(build, part) {
-    return {
-      ...build,
-      [part.type]: part
+  setPart(build, part, type) {
+    if (!part) {
+      return {
+        ...build,
+        [type]: null
+      }
+    } else {
+      return {
+        ...build,
+        [type]: part
+      }
     }
+
   }
 
   handleClick(event) {
@@ -66,11 +75,18 @@ export default class BuildMap extends Component {
     if (!$card) return
     const number = parseInt($card.getAttribute('data-number'), 10)
     const part = parts.find(part => part.productId === number)
-    this.setState({ build: this.setPart(build, part), added: true})
+    this.setState({ build: this.setPart(build, part, part.type), added: true })
   }
 
   handleEditClose() {
     this.setState({ showDrawer: false, added: false})
+  }
+
+  handleDelete(event) {
+    const { build } = this.state
+    const $card = event.target.closest('.card')
+    const type = $card.getAttribute('data-name')
+    this.setState({ build: this.setPart(build, null, type) })
   }
 
   render() {
@@ -78,7 +94,7 @@ export default class BuildMap extends Component {
     
     return (
         <Paper style={styles.paper}>
-          <PopperCard open={ Boolean(anchorEl) } anchorEl={ anchorEl } parts={ build }  onEdit={ this.handleEdit } onClose={this.handleClose} type={ partType }/>
+          <PopperCard open={ Boolean(anchorEl) } anchorEl={ anchorEl } parts={ build }  onEdit={ this.handleEdit } onClose={this.handleClose} onDelete={ this.handleDelete } type={ partType }/>
           <Button data-name="processor" variant="contained" color="secondary" onClick={this.handleClick} style={styles.processor}>CPU</Button>
           <Button data-name="motherboard" variant="contained" color="secondary" onClick={this.handleClick} style={styles.motherboard}>Motherboard</Button>
           <Button data-name="memory" variant="contained" color="secondary" onClick={this.handleClick} style={styles.memory}>Memory(RAM)</Button>

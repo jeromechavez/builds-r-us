@@ -5,11 +5,12 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Popover from '@material-ui/core/Popover'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
+import PopperButtons from './popper-buttons'
 
 const styles = {
   card: {
     display: 'flex',
-    width: '400px'
+    width: '500px'
   },
   details: {
     display: 'flex',
@@ -26,7 +27,8 @@ const styles = {
   cover: {
     width: '100%',
     height: '100%',
-    backgroundSize: 'contain'
+    backgroundSize: 'contain',
+    marginRight: '20px'
   },
   controls: {
     display: 'flex',    
@@ -39,7 +41,7 @@ const styles = {
   }
 }
 
-export default function PopperCard({ open, anchorEl, onClose, parts, type, onEdit }) {
+export default function PopperCard({ open, anchorEl, onClose, parts, type, onEdit, onDelete }) {
   if (!parts) return null
   if (!type) return null
   const part = !parts[type]
@@ -48,7 +50,7 @@ export default function PopperCard({ open, anchorEl, onClose, parts, type, onEdi
   return (
     <div>
       <Popover open={open} anchorEl={anchorEl} anchorOrigin={{vertical: 'bottom', horizontal: 'center' }} onClose={onClose}>
-      <Card style={ styles.card }>
+      <Card className="card" data-name={part.type} style={ styles.card }>
         <div style={ styles.details }>
           <CardContent style={ styles.content }>
             <Typography variant="headline">{ part.name }</Typography>
@@ -56,7 +58,7 @@ export default function PopperCard({ open, anchorEl, onClose, parts, type, onEdi
             <Typography variant="subheading" color="secondary">{ '$' + part.price.toFixed(2) }</Typography>
           </CardContent>
           <div style={ styles.controls }>
-              <IconButton onClick={onEdit}><i className="material-icons">edit</i></IconButton>
+            <PopperButtons onEdit= {onEdit} onDelete={onDelete} part={part}/>
           </div>
         </div>
         <div style={styles.container}>
