@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton'
 const styles = {
   card: {
     display: 'flex',
-    width: '400px'
+    width: '500px'
   },
   details: {
     display: 'flex',
@@ -26,7 +26,8 @@ const styles = {
   cover: {
     width: '100%',
     height: '100%',
-    backgroundSize: 'contain'
+    backgroundSize: 'contain',
+    marginRight: '20px'
   },
   controls: {
     display: 'flex',    
@@ -39,7 +40,7 @@ const styles = {
   }
 }
 
-export default function PopperCard({ open, anchorEl, onClose, parts, type, onEdit }) {
+export default function PopperCard({ open, anchorEl, onClose, parts, type, onEdit, onDelete }) {
   if (!parts) return null
   if (!type) return null
   const part = !parts[type]
@@ -48,7 +49,7 @@ export default function PopperCard({ open, anchorEl, onClose, parts, type, onEdi
   return (
     <div>
       <Popover open={open} anchorEl={anchorEl} anchorOrigin={{vertical: 'bottom', horizontal: 'center' }} onClose={onClose}>
-      <Card style={ styles.card }>
+      <Card className="card" data-name={part.type} style={ styles.card }>
         <div style={ styles.details }>
           <CardContent style={ styles.content }>
             <Typography variant="headline">{ part.name }</Typography>
@@ -57,7 +58,7 @@ export default function PopperCard({ open, anchorEl, onClose, parts, type, onEdi
           </CardContent>
           <div style={ styles.controls }>
               <IconButton onClick={onEdit}><i className="material-icons">edit</i></IconButton>
-              <IconButton color="secondary"><i class="material-icons">delete</i></IconButton>
+              <IconButton onClick={onDelete} color="secondary"><i className="material-icons">delete</i></IconButton>
           </div>
         </div>
         <div style={styles.container}>
