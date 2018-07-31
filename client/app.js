@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import parseHash from './util/hash'
+import HomeView from './views/home-view'
 import GridView from './views/grid-view'
 import BuildView from './views/build-view'
 import BuildCompleteView from './views/build-complete-view'
@@ -36,6 +37,10 @@ export default class App extends Component {
     this.setState({ build: build })
   }
 
+  renderHome() {
+    return <HomeView/>
+  }
+
   renderPartsGrid() {
     const { type } = this.state.params 
     return <GridView type={ type }/>
@@ -57,8 +62,10 @@ export default class App extends Component {
         return this.renderBuildComplete()
       case 'parts':
         return this.renderPartsGrid()
+      case 'home': 
+        return this.renderHome()
       default:
-        return this.renderPartsGrid()
+        return this.renderHome()
     }
   }
 
