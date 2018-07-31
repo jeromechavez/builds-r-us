@@ -24,12 +24,12 @@ export default class BuildParts extends Component {
     this.props.onAdd(number)
   }
   render() {
-    const { added } = this.props
+    const { added, parts } = this.props
     const disabled = added ? true : false
     return (
       <div style={styles.root}>
         <Grid container spacing={24}>
-          {this.props.parts.map(part => (
+          {parts.map(part => (
             <Grid item xs={3} key={part.productId}>
               <CardPart 
                 part={ part } 
