@@ -1997,7 +1997,7 @@ module.exports = [
     name: 'S340 Elite',
     imageURL: 'https://c1.neweggimages.com/ProductImageCompressAll1280/11-146-239-03.jpg',
     newegg: 'https://www.newegg.com/Product/Product.aspx?Item=N82E16811146239',
-    prine: 89.99,
+    price: 89.99,
     specs: [
       {
         specName: 'Color',
