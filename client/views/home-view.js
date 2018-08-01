@@ -1,9 +1,9 @@
 import React from 'react'
-import HomeSales from '../components/home-sales'
+import RedditLinks from '../components/reddit-links'
 
 
 export default function HomeView(props) {
   return (
-    <HomeSales/>
+    <RedditLinks/>
   )
 }
