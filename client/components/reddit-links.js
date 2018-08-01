@@ -27,13 +27,13 @@ const urls = [
 ]
 
 const message = 'Welcome to the Reddit section' 
-                + 'of Builds R Us! This section is' 
-                + 'designed for you to see what others'
-                + ' are seeing. On the left, we have computer '
-                + 'part sales if you want to find a deal and on '
-                + 'the right are pictures of completed computer '
-                + 'builds for you to get some inspiration from. '
-                + 'All submitted by the people of Reddit!'
+                + ' of Builds R Us! This section is' 
+                + ' designed for you to see what others'
+                + ' are doing with computers. On the left, we have computer'
+                + ' part sales if you want to find a deal and on '
+                + 'the right are pictures of completed computer'
+                + ' builds for you to get some inspiration from.'
+                + ' All submitted by the people of Reddit!'
 
 export default class RedditLinks extends Component {
   constructor(props) {
