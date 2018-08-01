@@ -6,18 +6,23 @@ import RedditCard from './reddit-card'
 
 const styles = {
   image: {
-    width: '600px',
-    height: '200px',
+    width: '300px',
+    height: '100px',
     backgroundImage: `url('./images/reddit-logo.png')`,
     backgroundSize: 'contain',
     backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat'
+    backgroundRepeat: 'no-repeat',
+    marginTop: '20px'
   },
   list: {
     width: '600px',
-    height: '500px',
+    height: '70vh',
     overflow: 'auto',
     marginTop: '20px'
+  },
+  intro: {
+    width: '600px',
+    margin: '20px'
   }
 }
 
@@ -59,17 +64,11 @@ export default class RedditLinks extends Component {
     const { posts, battlestations } = this.state
     return (
       <div>
-        <Grid container spacing={24} alignItems="flex-end">
-          <Grid item xs={6}>
-            <div style={styles.image}></div>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography align="center">{message}</Typography>
-          </Grid>
-        </Grid>
+        <div style={styles.image}></div>
+        <Typography style={styles.intro}>{message}</Typography>
         <Grid container spacing={24}>
           <Grid item xs={6}>
-            <Typography variant="display1" color="primary" align="center">'buildapcsales' subreddit</Typography>
+            <Typography variant="display1" color="primary" align="center">'/r/buildapcsales'</Typography>
             <List style={styles.list} component="nav">
               {posts.map(post => (
                 <div key={post.data.id}>
@@ -79,7 +78,7 @@ export default class RedditLinks extends Component {
             </List>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant="display1" color="primary" align="center">'battlestations' subreddit</Typography>
+            <Typography variant="display1" color="primary" align="center">'/r/battlestations'</Typography>
             <List style={styles.list} component="nav">
               {battlestations.map(station => (
                 <div key={station.data.id}>
