@@ -45,7 +45,7 @@ export default function RedditCard({ post }) {
             <Typography variant="body2" color="textSecondary">{post.data.domain}</Typography>
           </CardContent>
           <div style={styles.controls}>
-            <Typography variant="subheading" color="primary">{post.data.author}</Typography>
+            <Typography variant="subheading" color="primary">{'Submitted by ' + post.data.author}</Typography>
           </div>
         </div>
       </Card>
