@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
-import styles from '../util/build-complete-styles'
 import PopperCard from './popper-card'
 import EditGrid from './part-edit'
+import BuildSave from './build-save'
+import styles from '../util/build-complete-styles'
 
 export default class BuildMap extends Component {
   constructor(props) {
@@ -12,9 +13,11 @@ export default class BuildMap extends Component {
       anchorEl: null,
       partType: null,
       build: null,
+      buildName: '',
       parts: [],
       showDrawer: false,
-      added: false
+      added: false,
+      saved: false 
     }
   }
 
@@ -76,19 +79,41 @@ export default class BuildMap extends Component {
     this.setState({ showDrawer: false, added: false})
   }
 
-  handleDelete= (event) => {
+  handleDelete = (event) => {
     const { build } = this.state
     const $card = event.target.closest('.card')
     const type = $card.getAttribute('data-name')
     this.setState({ build: this.setPart(build, null, type) })
   }
 
+  handleSave = () => {
+    const { build, buildName } = this.state
+    const reqBody = Object.assign({build}, {buildName: buildName})
+    const req = {
+      method: 'POST',
+      body: JSON.stringify(reqBody),
+      headers: { 'Content-Type': 'application/json'}
+    }
+
+    fetch('computer-parts/save', req)
+      .then(res => res.ok ? res.json() : null)
+      .then(() => this.setState({ saved: true }))
+      .then(() => alert('Build Saved!'))
+      .catch(err => console.log(err))
+  }
+
+  handleInputChange = (event) => {
+    const { value } = event.target
+    this.setState({buildName: value})
+  }
+
   render() {
-    const { anchorEl, partType, build, parts, showDrawer, added } = this.state
+    const { anchorEl, partType, build, parts, showDrawer, added, saved } = this.state
     
     return (
+      <div>
         <Paper style={styles.paper}>
-          <PopperCard open={ Boolean(anchorEl) } anchorEl={ anchorEl } parts={ build }  onEdit={ this.handleEdit } onClose={this.handleClose} onDelete={ this.handleDelete } type={ partType }/>
+          <PopperCard open={Boolean(anchorEl)} anchorEl={anchorEl} parts={build} onEdit={this.handleEdit} onClose={this.handleClose} onDelete={this.handleDelete} type={partType} />
           <Button data-name="processor" variant="contained" color="secondary" onClick={this.handleClick} style={styles.processor}>CPU</Button>
           <Button data-name="motherboard" variant="contained" color="secondary" onClick={this.handleClick} style={styles.motherboard}>Motherboard</Button>
           <Button data-name="memory" variant="contained" color="secondary" onClick={this.handleClick} style={styles.memory}>Memory(RAM)</Button>
@@ -97,8 +122,10 @@ export default class BuildMap extends Component {
           <Button data-name="powersupply" variant="contained" color="secondary" onClick={this.handleClick} style={styles.powersupply}>Power Supply</Button>
           <Button data-name="cooling" variant="contained" color="secondary" onClick={this.handleClick} style={styles.cooling}>CPU Cooler</Button>
           <Button data-name="storage" variant="contained" color="secondary" onClick={this.handleClick} style={styles.storage}>Storage</Button>
-          <EditGrid open={showDrawer} parts={parts} addPart={ this.handleChange} disabled={added} onClose={this.handleEditClose} />
+          <EditGrid open={showDrawer} parts={parts} addPart={this.handleChange} disabled={added} onClose={this.handleEditClose} />
         </Paper>
+        <BuildSave change={this.handleInputChange} submit={this.handleSave} saved={ saved }/>
+      </div>
     )
   }
 }
