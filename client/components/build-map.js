@@ -8,12 +8,6 @@ import EditGrid from './part-edit'
 export default class BuildMap extends Component {
   constructor(props) {
     super(props)
-    this.handleClick = this.handleClick.bind(this)
-    this.handleClose = this.handleClose.bind(this)
-    this.handleEdit = this.handleEdit.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.handleEditClose = this.handleEditClose.bind(this)
-    this.handleDelete = this.handleDelete.bind(this)
     this.state = {
       anchorEl: null,
       partType: null,
@@ -44,17 +38,17 @@ export default class BuildMap extends Component {
 
   }
 
-  handleClick(event) {
+  handleClick = (event) => {
     const { currentTarget } = event
     const type = currentTarget.dataset.name
     this.setState({ anchorEl: currentTarget, partType: type })
   }
 
-  handleClose() {
+  handleClose = () => {
     this.setState({ anchorEl: null})
   }
 
-  handleEdit() {
+  handleEdit = () => {
     const { showDrawer, partType } = this.state
 
     const req = {
@@ -69,7 +63,7 @@ export default class BuildMap extends Component {
 
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     const { parts, build } = this.state
     const $card = event.target.closest('.card')
     if (!$card) return
@@ -78,11 +72,11 @@ export default class BuildMap extends Component {
     this.setState({ build: this.setPart(build, part, part.type), added: true })
   }
 
-  handleEditClose() {
+  handleEditClose = ()  => {
     this.setState({ showDrawer: false, added: false})
   }
 
-  handleDelete(event) {
+  handleDelete= (event) => {
     const { build } = this.state
     const $card = event.target.closest('.card')
     const type = $card.getAttribute('data-name')

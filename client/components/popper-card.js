@@ -4,7 +4,6 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Popover from '@material-ui/core/Popover'
 import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
 import PopperButtons from './popper-buttons'
 
 const styles = {
