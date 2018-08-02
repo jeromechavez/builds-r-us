@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button'
 import PopperCard from './popper-card'
 import EditGrid from './part-edit'
 import BuildSave from './build-save'
+import BuildList from '../components/build-list'
 import styles from '../util/build-complete-styles'
 
 export default class BuildMap extends Component {
@@ -13,11 +14,11 @@ export default class BuildMap extends Component {
       anchorEl: null,
       partType: null,
       build: null,
-      buildName: '',
+      buildName: null,
       parts: [],
       showDrawer: false,
       added: false,
-      saved: false 
+      saved: true 
     }
   }
 
@@ -56,7 +57,7 @@ export default class BuildMap extends Component {
 
     const req = {
       method: 'GET',
-      headers: { 'Content-Tipe': 'application/json' }
+      headers: { 'Content-Type': 'application/json' }
     }
 
     fetch('computer-parts/' + partType, req)
@@ -81,13 +82,14 @@ export default class BuildMap extends Component {
 
   handleDelete = (event) => {
     const { build } = this.state
-    const $card = event.target.closest('.card')
+    const $card = event.currentTarget.closest('.card')
     const type = $card.getAttribute('data-name')
     this.setState({ build: this.setPart(build, null, type) })
   }
 
   handleSave = () => {
     const { build, buildName } = this.state
+    if (!build) return null
     const reqBody = Object.assign({build}, {buildName: buildName})
     const req = {
       method: 'POST',
@@ -104,7 +106,11 @@ export default class BuildMap extends Component {
 
   handleInputChange = (event) => {
     const { value } = event.target
-    this.setState({buildName: value})
+    this.setState({buildName: value, saved: false})
+  }
+
+  handleSetBuild = (build) => {
+    this.setState({ build: build })
   }
 
   render() {
@@ -112,18 +118,21 @@ export default class BuildMap extends Component {
     
     return (
       <div>
-        <Paper style={styles.paper}>
-          <PopperCard open={Boolean(anchorEl)} anchorEl={anchorEl} parts={build} onEdit={this.handleEdit} onClose={this.handleClose} onDelete={this.handleDelete} type={partType} />
-          <Button data-name="processor" variant="contained" color="secondary" onClick={this.handleClick} style={styles.processor}>CPU</Button>
-          <Button data-name="motherboard" variant="contained" color="secondary" onClick={this.handleClick} style={styles.motherboard}>Motherboard</Button>
-          <Button data-name="memory" variant="contained" color="secondary" onClick={this.handleClick} style={styles.memory}>Memory(RAM)</Button>
-          <Button data-name="videocard" variant="contained" color="secondary" onClick={this.handleClick} style={styles.videocard}>Video Card</Button>
-          <Button data-name="case" variant="contained" color="secondary" onClick={this.handleClick} style={styles.case}>Case</Button>
-          <Button data-name="powersupply" variant="contained" color="secondary" onClick={this.handleClick} style={styles.powersupply}>Power Supply</Button>
-          <Button data-name="cooling" variant="contained" color="secondary" onClick={this.handleClick} style={styles.cooling}>CPU Cooler</Button>
-          <Button data-name="storage" variant="contained" color="secondary" onClick={this.handleClick} style={styles.storage}>Storage</Button>
-          <EditGrid open={showDrawer} parts={parts} addPart={this.handleChange} disabled={added} onClose={this.handleEditClose} />
-        </Paper>
+        <div style={styles.container}>
+          <Paper style={styles.paper}>
+            <PopperCard open={Boolean(anchorEl)} anchorEl={anchorEl} parts={build} onEdit={this.handleEdit} onClose={this.handleClose} onDelete={this.handleDelete} type={partType} />
+            <Button data-name="processor" variant="contained" color="secondary" onClick={this.handleClick} style={styles.processor}>CPU</Button>
+            <Button data-name="motherboard" variant="contained" color="secondary" onClick={this.handleClick} style={styles.motherboard}>Motherboard</Button>
+            <Button data-name="memory" variant="contained" color="secondary" onClick={this.handleClick} style={styles.memory}>Memory(RAM)</Button>
+            <Button data-name="videocard" variant="contained" color="secondary" onClick={this.handleClick} style={styles.videocard}>Video Card</Button>
+            <Button data-name="case" variant="contained" color="secondary" onClick={this.handleClick} style={styles.case}>Case</Button>
+            <Button data-name="powersupply" variant="contained" color="secondary" onClick={this.handleClick} style={styles.powersupply}>Power Supply</Button>
+            <Button data-name="cooling" variant="contained" color="secondary" onClick={this.handleClick} style={styles.cooling}>CPU Cooler</Button>
+            <Button data-name="storage" variant="contained" color="secondary" onClick={this.handleClick} style={styles.storage}>Storage</Button>
+            <EditGrid open={showDrawer} parts={parts} addPart={this.handleChange} disabled={added} onClose={this.handleEditClose} />
+          </Paper>
+          <BuildList setBuild={this.handleSetBuild}/>
+        </div>
         <BuildSave change={this.handleInputChange} submit={this.handleSave} saved={ saved }/>
       </div>
     )
