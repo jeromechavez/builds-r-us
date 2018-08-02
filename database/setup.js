@@ -5,7 +5,7 @@ const seed = require('./seed')
 MongoClient
   .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(client => {
-    const db = client.db('computer-parts-app')
+    const db = client.db('heroku_skz5tpxx')
     const collection = db.collection('parts')
     return collection 
       .deleteMany({})
