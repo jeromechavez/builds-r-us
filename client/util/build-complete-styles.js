@@ -1,8 +1,7 @@
 module.exports = {
   paper: {
-    width: '64vw',
+    width: '830px',
     height: '790px',
-    margin: '10vh auto auto',
     backgroundImage: `url('./images/view-build-cropped.png')`,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
@@ -10,8 +9,8 @@ module.exports = {
     position: 'relative'
   },
   processor: {
-    position: 'absolute',
-    top: '250px',
+    position: 'fixed',
+    top: '300px',
     left: '275px'
   },
   motherboard: {
@@ -48,5 +47,8 @@ module.exports = {
     position: 'absolute',
     bottom: '100px',
     right: '175px'
+  },
+  container: {
+    position: 'relative'
   }
 }

@@ -13,5 +13,13 @@ module.exports = function buildRouter(collection) {
       .then(build => res.status(201).json(build))
       .catch(err => next(err))
   })
+
+  router.get('/save/builds', (req, res, next) => {
+    collection
+      .find()
+      .toArray()
+      .then(builds => res.json(builds))
+      .catch(err => next(err))
+  })
   return router
 }
