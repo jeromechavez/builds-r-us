@@ -1,5 +1,6 @@
 # Builds R Us
 
+https://builds-r-us.herokuapp.com/
 
 ## A Full-Stack web application for computer enthusiasts who want to build their own rig.
 
