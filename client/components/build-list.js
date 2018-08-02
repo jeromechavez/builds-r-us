@@ -48,7 +48,7 @@ export default class BuildList extends Component {
     const { currentTarget } = event
     const buildName = currentTarget.dataset.name
     const savedBuild = builds.find(build => build.buildName === buildName)
-    this.props.setBuild(savedBuild.build)
+    this.props.setBuild(savedBuild)
     this.setState({ anchorEl: null })
   }
 
