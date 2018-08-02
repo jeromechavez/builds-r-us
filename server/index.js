@@ -13,7 +13,7 @@ MongoClient
     process.exit(1)
   })
   .then(client => {
-    const db = client.db('heroku_skz5tpxx')
+    const db = client.db()
     const partsCollection = db.collection('parts')
     const buildCollection = db.collection('builds')
     const publicPath = path.join(__dirname, 'public/')
