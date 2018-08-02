@@ -21,5 +21,20 @@ module.exports = function buildRouter(collection) {
       .then(builds => res.json(builds))
       .catch(err => next(err))
   })
+
+  router.put('/save/:buildId', (req, res, next) => {
+    collection
+      .findOneAndReplace(
+        { buildId: req.params.buildId},
+        { $set: req.body },
+        { returnOriginal: false }
+      )
+      .then (({ value }) => {
+        value
+          ? res.sendStatus(204)
+          : res.sendStatus(404)
+      })
+      .catch(err =>  next(err))
+  })
   return router
 }
