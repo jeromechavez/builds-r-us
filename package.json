@@ -2,6 +2,9 @@
   "name": "builds-r-us",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "10.6.0"
+  },
   "main": "server/index.js",
   "scripts": {
     "start": "node .",
