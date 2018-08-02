@@ -24,13 +24,14 @@ const styles = {
   }
 }
 
-export default function BuildSave({ change, submit, saved }) {
+export default function BuildSave({ change, submit, saved, name }) {
+  const defaultValue = (!name) ? '' : name
   return (
     <div style={styles.root}>
       <Typography variant="headline" style={styles.header}>Save your Rig</Typography>
       <Grid container wrap="wrap" alignItems="flex-end" spacing={8} style={styles.grid}>
         <Grid item xs={11} style={styles.gridInput}>
-          <TextField id="name" label="Name" margin="normal" style={styles.input} onChange={change}></TextField>
+          <TextField id="name" label="Name" margin="normal" style={styles.input} value={defaultValue} onChange={change}></TextField>
         </Grid>
         <Grid item xs={1}>
           <Button variant="contained" disabled={saved} onClick={submit}>Save</Button>
