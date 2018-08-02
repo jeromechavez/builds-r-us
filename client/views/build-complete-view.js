@@ -6,6 +6,5 @@ export default function BuildCompleteView({ parts }) {
     <div>
       <BuildMap parts={parts} />
     </div>
-
   )
 }
