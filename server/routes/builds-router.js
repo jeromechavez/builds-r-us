@@ -37,5 +37,17 @@ module.exports = function buildRouter(collection) {
       })
       .catch(err =>  next(err))
   })
+
+  router.delete('/delete/:id', (req, res, next) => {
+    collection
+      .findOneAndDelete({ buildId: req.params.id })
+      .then(({ value }) => {
+        value
+          ? res.sendStatus(204)
+          : res.sendStatus(404)
+      })
+      .catch(err => next(err))
+  })
+
   return router
 }
