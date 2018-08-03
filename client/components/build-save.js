@@ -24,7 +24,7 @@ const styles = {
   }
 }
 
-export default function BuildSave({ change, submit, saved, name }) {
+export default function BuildSave({ change, submit, saved, name, updated, overwrite }) {
   const defaultValue = (!name) ? '' : name
   return (
     <div style={styles.root}>
@@ -34,7 +34,8 @@ export default function BuildSave({ change, submit, saved, name }) {
           <TextField id="name" label="Name" margin="normal" style={styles.input} value={defaultValue} onChange={change}></TextField>
         </Grid>
         <Grid item xs={1}>
-          <Button variant="contained" disabled={saved} onClick={submit}>Save</Button>
+          <Button id="button" variant="contained" disabled={updated} onClick={overwrite}>Update</Button>
+          <Button id="button" variant="contained" disabled={saved} onClick={submit}>Save</Button>
         </Grid>
       </Grid>
     </div>

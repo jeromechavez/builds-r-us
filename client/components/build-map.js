@@ -7,8 +7,6 @@ import BuildSave from './build-save'
 import BuildList from '../components/build-list'
 import styles from '../util/build-complete-styles'
 
-// mongodb://<dbuser>:<dbpassword>@ds145649.mlab.com:45649/heroku_skz5tpxx
-
 export default class BuildMap extends Component {
   constructor(props) {
     super(props)
@@ -21,7 +19,8 @@ export default class BuildMap extends Component {
       parts: [],
       showDrawer: false,
       added: false,
-      saved: true 
+      saved: true,
+      updated: true 
     }
   }
 
@@ -76,7 +75,7 @@ export default class BuildMap extends Component {
     if (!$card) return
     const number = parseInt($card.getAttribute('data-number'), 10)
     const part = parts.find(part => part.productId === number)
-    this.setState({ build: this.setPart(build, part, part.type), added: true, saved: false })
+    this.setState({ build: this.setPart(build, part, part.type), added: true, updated: false })
   }
 
   handleEditClose = ()  => {
@@ -91,15 +90,16 @@ export default class BuildMap extends Component {
   }
 
   handleSave = () => {
-    const { build, buildName, buildId } = this.state
+    const { build, buildName } = this.state
     if (!build) return null
     const reqBody = Object.assign({build}, {buildName: buildName})
-    const id = buildId ? buildId : ''
-    const req = buildId
-      ? { method: 'PUT', body: JSON.stringify(reqBody), headers: { 'Content-Type': 'application/json' }}
-      : { method: 'POST', body: JSON.stringify(reqBody), headers: { 'Content-Type': 'application/json' }}
+    const req = { 
+      method: 'POST', 
+      body: JSON.stringify(reqBody), 
+      headers: { 'Content-Type': 'application/json' }
+    }
 
-    fetch(`computer-parts/save/${id}` , req)
+    fetch('computer-parts/save/', req)
       .then(res => res.ok ? res.json() : null)
       .then(() => this.setState({ saved: true }))
       .then(() => alert('Build Saved!'))
@@ -112,12 +112,29 @@ export default class BuildMap extends Component {
   }
 
   handleSetBuild = (build) => {
-    console.log(build.buildName)
-    this.setState({ build: build.build, currentBuildId: build.buildId, buildName: build.buildName })
+    this.setState({ build: build.build, buildId: build.buildId, buildName: build.buildName })
+  }
+
+  handleOverwrite = () => {
+    const { build, buildId } = this.state
+    const reqBody = Object.assign({ build })
+    const req = {
+      method: 'PUT',
+      body: JSON.stringify(reqBody),
+      headers: { 'Content-Type': 'application/json' }
+    }
+
+    fetch(`computer-parts/save/${buildId}`, req)
+      .then(res => res.ok ? res.json() : null)
+      .then(updatedBuild => {
+        this.setState({ build: updatedBuild.build, updated: true }
+      )})
+      .then(() => alert('Build Updated!'))
+      .catch(err => console.error(err))
   }
 
   render() {
-    const { anchorEl, partType, build, parts, showDrawer, added, saved, buildName } = this.state
+    const { anchorEl, partType, build, parts, showDrawer, added, saved, buildName, updated } = this.state
     
     return (
       <div>
@@ -136,7 +153,7 @@ export default class BuildMap extends Component {
           </Paper>
           <BuildList setBuild={this.handleSetBuild}/>
         </div>
-        <BuildSave change={this.handleInputChange} submit={this.handleSave} name={buildName} saved={ saved }/>
+        <BuildSave change={this.handleInputChange} submit={this.handleSave} name={buildName} overwrite={this.handleOverwrite} updated={updated} saved={ saved }/>
       </div>
     )
   }

@@ -22,16 +22,17 @@ module.exports = function buildRouter(collection) {
       .catch(err => next(err))
   })
 
-  router.put('/save/:buildId', (req, res, next) => {
+  router.put('/save/:id', (req, res, next) => {
+    const { body, params: { id } } = req
     collection
-      .findOneAndReplace(
-        { buildId: req.params.buildId},
-        { $set: req.body },
+      .findOneAndUpdate(
+        { buildId: id },
+        { $set: body },
         { returnOriginal: false }
       )
-      .then (({ value }) => {
+      .then(({ value }) => {
         value
-          ? res.sendStatus(204)
+          ? res.json(value)
           : res.sendStatus(404)
       })
       .catch(err =>  next(err))
