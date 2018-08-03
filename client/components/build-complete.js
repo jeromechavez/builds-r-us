@@ -34,7 +34,7 @@ export default class BuildComplete extends Component {
     const { parts } = this.props
     this.setState({ build: parts })
 
-    fetch('computer-parts/save/builds', req)
+    fetch('builds/', req)
       .then(res => res.ok && res.json())
       .then(builds => this.setState({ buildList: builds }))
       .catch(err => console.error(err))
@@ -43,7 +43,7 @@ export default class BuildComplete extends Component {
   componentDidUpdate() {
     const { listUpdate } = this.state
     if (listUpdate) {
-      fetch('computer-parts/save/builds', req)
+      fetch('builds/', req)
         .then(res => res.ok && res.json())
         .then(builds => this.setState({ buildList: builds, listUpdate: false }))
         .catch(err => console.error(err))
@@ -67,7 +67,6 @@ export default class BuildComplete extends Component {
 
   handleClick = (event) => {
     const { currentTarget } = event
-    console.log(currentTarget)
     const type = currentTarget.dataset.name
     this.setState({ anchorEl: currentTarget, partType: type })
   }
@@ -122,10 +121,10 @@ export default class BuildComplete extends Component {
         headers: { 'Content-Type': 'application/json' }
       }
 
-      fetch(`computer-parts/save/${buildId}`, req)
+      fetch(`builds/${buildId}`, req)
         .then(res => res.ok ? res.json() : null)
         .then(updatedBuild => {
-          this.setState({ build: updatedBuild.build, updated: true, listUpdate: true }
+          this.setState({ build: updatedBuild.build, saved: true, listUpdate: true }
           )
         })
         .then(() => alert('Build Updated!'))
@@ -138,7 +137,7 @@ export default class BuildComplete extends Component {
         headers: { 'Content-Type': 'application/json' }
       }
 
-      fetch('computer-parts/save/', req)
+      fetch('builds/save/', req)
         .then(res => res.ok ? res.json() : null)
         .then(() => this.setState({ saved: true, listUpdate: true }))
         .then(() => alert('Build Saved!'))
@@ -149,7 +148,7 @@ export default class BuildComplete extends Component {
   handleDeleteBuild = () => {
     const { buildId } = this.state
     const req = { method: 'DELETE' }
-    fetch(`computer-parts/delete/${buildId}` , req)
+    fetch(`builds/${buildId}` , req)
       .then(res => res.ok ? this.setState({buildId: null, build: null, buildName: null, listUpdate: true }) : null)
       .then(() => alert('Build Deleted!'))
       .catch(err => console.error(err))

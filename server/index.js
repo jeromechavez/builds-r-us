@@ -21,7 +21,7 @@ MongoClient
       .use(express.static(publicPath))
       .use(bodyParser.json())
       .use('/computer-parts', partsRouter(partsCollection))
-      .use('/computer-parts', buildRouter(buildCollection))
+      .use('/builds', buildRouter(buildCollection))
       .use((err, req, res, next) => {
         console.error(err)
         res.status(500).json({
