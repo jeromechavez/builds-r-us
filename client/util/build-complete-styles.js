@@ -9,8 +9,8 @@ module.exports = {
     position: 'relative'
   },
   processor: {
-    position: 'fixed',
-    top: '300px',
+    position: 'absolute',
+    top: '250px',
     left: '275px'
   },
   motherboard: {
@@ -47,9 +47,6 @@ module.exports = {
     position: 'absolute',
     bottom: '100px',
     right: '175px'
-  },
-  container: {
-    position: 'relative'
   },
   banner: {
     width: '750px',
