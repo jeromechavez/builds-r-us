@@ -8,7 +8,7 @@ import NavBar from './components/nav-bar'
 
 const styles = {
   root: {
-    width: '100vw'
+    width: '100%'
   },
   stretch: {
     marginTop: '-1%'

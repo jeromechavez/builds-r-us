@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 
 const styles = {
   root: {
+    width: '100vw',
     backgroundColor: 'black'
   },
   logo: {
