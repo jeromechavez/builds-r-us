@@ -14,7 +14,7 @@ module.exports = function buildRouter(collection) {
       .catch(err => next(err))
   })
 
-  router.get('/save/builds', (req, res, next) => {
+  router.get('/', (req, res, next) => {
     collection
       .find()
       .toArray()
@@ -22,7 +22,7 @@ module.exports = function buildRouter(collection) {
       .catch(err => next(err))
   })
 
-  router.put('/save/:id', (req, res, next) => {
+  router.put('/:id', (req, res, next) => {
     const { body, params: { id } } = req
     collection
       .findOneAndUpdate(
@@ -37,5 +37,17 @@ module.exports = function buildRouter(collection) {
       })
       .catch(err =>  next(err))
   })
+
+  router.delete('/:id', (req, res, next) => {
+    collection
+      .findOneAndDelete({ buildId: req.params.id })
+      .then(({ value }) => {
+        value
+          ? res.sendStatus(204)
+          : res.sendStatus(404)
+      })
+      .catch(err => next(err))
+  })
+
   return router
 }

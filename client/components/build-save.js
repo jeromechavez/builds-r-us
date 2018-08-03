@@ -29,18 +29,20 @@ const styles = {
   }
 }
 
-export default function BuildSave({ change, submit, saved, name, buildId }) {
+export default function BuildSave({ change, submit, saved, name, buildId, deleteBuild }) {
   const action = (buildId) ? 'Update' : 'Save'
+  const deleteActive = (buildId) ? false : true
   const defaultValue = (!name) ? '' : name
   return (
     <div style={styles.root}>
       <div style={styles.banner}></div>
       <Grid container wrap="wrap" alignItems="flex-end" spacing={8} style={styles.grid}>
-        <Grid item xs={9} style={styles.gridInput}>
+        <Grid item xs={7} style={styles.gridInput}>
           <TextField id="name" label="Name" margin="normal" style={styles.input} value={defaultValue} onChange={change}></TextField>
         </Grid>
         <Grid item xs={1}>
-          <Button id="button" variant="contained" disabled={saved} onClick={submit}>{action}</Button>
+          <Button variant="contained" disabled={deleteActive} onClick={deleteBuild} color="secondary">Delete</Button>
+          <Button variant="contained" disabled={saved} onClick={submit}>{action}</Button>
         </Grid>
       </Grid>
     </div>
