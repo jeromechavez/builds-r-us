@@ -50,5 +50,11 @@ module.exports = {
   },
   container: {
     position: 'relative'
+  },
+  banner: {
+    width: '750px',
+    height: '50px',
+    backgroundRepeat: 'no-repeat',
+    backgroundImage: `url('./images/your-rig.png')`
   }
 }
