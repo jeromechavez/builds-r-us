@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button'
 import PopperCard from './popper-card'
 import EditGrid from './part-edit'
 import BuildSave from './build-save'
@@ -143,8 +142,17 @@ export default class BuildComplete extends Component {
         .then(res => res.ok ? res.json() : null)
         .then(() => this.setState({ saved: true, listUpdate: true }))
         .then(() => alert('Build Saved!'))
-        .catch(err => console.log(err))
+        .catch(err => console.error(err))
     }
+  }
+
+  handleDeleteBuild = () => {
+    const { buildId } = this.state
+    const req = { method: 'DELETE' }
+    fetch(`computer-parts/delete/${buildId}` , req)
+      .then(res => res.ok ? this.setState({buildId: null, build: null, buildName: null, listUpdate: true }) : null)
+      .then(() => alert('Build Deleted!'))
+      .catch(err => console.error(err))
   }
 
   handleInputChange = (event) => {
@@ -167,7 +175,7 @@ export default class BuildComplete extends Component {
             <BuildMap isClicked={this.handleClick} />
           </Grid>
           <Grid item xs={4}>
-            <BuildSave change={this.handleInputChange} submit={this.handleSave} name={buildName} buildId={buildId} updated={updated} saved={saved}/>
+            <BuildSave change={this.handleInputChange} submit={this.handleSave} deleteBuild={this.handleDeleteBuild} name={buildName} buildId={buildId} updated={updated} saved={saved}/>
             <BuildList setBuild={this.handleSetBuild} list={buildList} />
           </Grid>
           <PopperCard open={Boolean(anchorEl)} anchorEl={anchorEl} parts={build} onEdit={this.handleEdit} onClose={this.handleClose} onDelete={this.handleDelete} type={partType} />
