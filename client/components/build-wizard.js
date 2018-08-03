@@ -34,9 +34,8 @@ const partType = [
 const initialState = {
   activeStep: 0,
   added: false,
-  currentBuild: false,
-  build: null,
-  parts: []
+  showCurrentBuild: false,
+  build: null
 }
 
 const req = {
@@ -57,11 +56,6 @@ export default class BuildWizard extends Component {
   }
 
   componentDidMount() {
-    const req = {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
-    }
-
     fetch('computer-parts/processor', req)
       .then(res => res.ok && res.json())
       .then(data => this.setState({ parts: data }))
@@ -96,6 +90,13 @@ export default class BuildWizard extends Component {
   }
 
   handleReset = () => {
+    fetch('computer-parts/processor', req)
+      .then(res => res.ok && res.json())
+      .then(data => {
+        const resetState = Object.assign(initialState, { parts: data } )
+        this.setState(resetState)
+      })
+      .catch(err => console.error(err))
     this.setState(initialState)
   }
 
