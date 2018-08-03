@@ -1,39 +1,46 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 
 const styles = {
   input: {
-    width: '640px'
+    width: '80%'
+  },
+  root: {
+    marginTop: '10px'
   },
   grid: {
-    width: '830px',
+    width: '400px',
     marginLeft: '10px'
   },
   gridInput: {
     height: '75px',
-    width: '650px'
-  },
-  root: {
-    marginTop: '20px'
+    width: '80%'
   },
   header: {
     marginLeft: '20px'
+  },
+  banner: {
+    width: '400px',
+    height: '50px',
+    backgroundImage: `url('./images/save-rig.png')`,
+    backgroundRepeat: 'no-repeat'
   }
 }
 
-export default function BuildSave({ change, submit, saved }) {
+export default function BuildSave({ change, submit, saved, name, buildId }) {
+  const action = (buildId) ? 'Update' : 'Save'
+  const defaultValue = (!name) ? '' : name
   return (
     <div style={styles.root}>
-      <Typography variant="headline" style={styles.header}>Save your Rig</Typography>
+      <div style={styles.banner}></div>
       <Grid container wrap="wrap" alignItems="flex-end" spacing={8} style={styles.grid}>
-        <Grid item xs={11} style={styles.gridInput}>
-          <TextField id="name" label="Name" margin="normal" style={styles.input} onChange={change}></TextField>
+        <Grid item xs={9} style={styles.gridInput}>
+          <TextField id="name" label="Name" margin="normal" style={styles.input} value={defaultValue} onChange={change}></TextField>
         </Grid>
         <Grid item xs={1}>
-          <Button variant="contained" disabled={saved} onClick={submit}>Save</Button>
+          <Button id="button" variant="contained" disabled={saved} onClick={submit}>{action}</Button>
         </Grid>
       </Grid>
     </div>

@@ -7,32 +7,14 @@ const styles = {
   menuItem: {
     width: '200px'
   },
-  root: {
-    position: 'absolute',
-    top: '20px',
-    left: '70%'
-  }
 }
 
 export default class BuildList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      anchorEl: null,
-      builds: []
+      anchorEl: null
     }
-  }
-
-  componentDidMount() {
-    const req = {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
-    }
-
-    fetch('computer-parts/save/builds', req)
-      .then(res => res.ok && res.json())
-      .then(builds => this.setState({ builds: builds }))
-      .catch(err => console.error(err))
   }
 
   handleClick = event => {
@@ -44,17 +26,18 @@ export default class BuildList extends Component {
   }
 
   handleShowSavedBuild = (event) => {
-    const { builds } = this.state
     const { currentTarget } = event
+    const { list } = this.props
     const buildName = currentTarget.dataset.name
-    const savedBuild = builds.find(build => build.buildName === buildName)
-    this.props.setBuild(savedBuild.build)
+    const savedBuild = list.find(build => build.buildName === buildName)
+    this.props.setBuild(savedBuild)
     this.setState({ anchorEl: null })
   }
 
   render() {
-    const { anchorEl, builds } = this.state
-    if (builds.length === 0) return null
+    const { anchorEl } = this.state
+    const { list } = this.props
+    if (list.length === 0) return null
     return (
       <div style={styles.root}>
         <Button variant="contained" onClick={this.handleClick}>Builds</Button>
@@ -64,7 +47,7 @@ export default class BuildList extends Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          { builds.map( build => (
+          { list.map( build => (
             <MenuItem className="item" key={build.buildId} data-name={build.buildName} onClick={this.handleShowSavedBuild} style={styles.menuItem}>{build.buildName}</MenuItem>
           ))}
         </Menu>

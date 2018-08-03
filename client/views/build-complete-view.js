@@ -1,10 +1,10 @@
 import React from 'react'
-import BuildMap from '../components/build-map'
+import BuildComplete from '../components/build-complete'
 
 export default function BuildCompleteView({ parts }) {
   return (
     <div>
-      <BuildMap parts={parts} />
+      <BuildComplete parts={parts} />
     </div>
   )
 }
