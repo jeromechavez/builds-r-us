@@ -6,6 +6,7 @@ import BuildParts from './build-parts'
 import ResetButton from './reset-button'
 import BuildButtons from './build-buttons'
 import CurrentBuild from './build-current'
+import BuildMap from './build-map'
 
 function getSteps() {
   return [
@@ -34,6 +35,7 @@ const partType = [
 const initialState = {
   activeStep: 0,
   added: false,
+  finished: false,
   showCurrentBuild: false,
   build: null
 }
@@ -49,6 +51,7 @@ export default class BuildWizard extends Component {
     this.state = {
       activeStep: 0,
       added: false,
+      finished: false,
       showCurrentBuild: false,
       build: null,
       parts: []
@@ -111,7 +114,7 @@ export default class BuildWizard extends Component {
   }
 
   render() {
-    const { activeStep, parts, build, added, showCurrentBuild } = this.state
+    const { activeStep, parts, build, added, showCurrentBuild, finished } = this.state
     const steps = getSteps()
     const disabled = (added) ? false : true
     return (
