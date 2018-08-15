@@ -6,7 +6,6 @@ import BuildParts from './build-parts'
 import ResetButton from './reset-button'
 import BuildButtons from './build-buttons'
 import CurrentBuild from './build-current'
-import BuildMap from './build-map'
 
 function getSteps() {
   return [
