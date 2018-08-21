@@ -34,6 +34,7 @@ const partType = [
 const initialState = {
   activeStep: 0,
   added: false,
+  finished: false,
   showCurrentBuild: false,
   build: null
 }
@@ -49,6 +50,7 @@ export default class BuildWizard extends Component {
     this.state = {
       activeStep: 0,
       added: false,
+      finished: false,
       showCurrentBuild: false,
       build: null,
       parts: []
@@ -71,12 +73,17 @@ export default class BuildWizard extends Component {
 
   handleNext = () => {
     const { activeStep, build } = this.state
+    const steps = getSteps()
     this.props.build(build)
-
-    fetch('computer-parts/' + partType[activeStep + 1], req)
-      .then(res => res.ok && res.json())
-      .then(data => this.setState({ parts: data, activeStep: activeStep + 1, added: false }))
-      .catch(err => console.error(err))
+    if (activeStep === steps.length - 1) {
+      this.setState({ showCurrentBuild: true, activeStep: activeStep + 1 })
+    }
+    else {
+      fetch('computer-parts/' + partType[activeStep + 1], req)
+        .then(res => res.ok && res.json())
+        .then(data => this.setState({ parts: data, activeStep: activeStep + 1, added: false }))
+        .catch(err => console.error(err))
+    }
   }
 
   handleBack = () => {
@@ -107,7 +114,7 @@ export default class BuildWizard extends Component {
   }
   handleShowBuild = () => {
     const { showCurrentBuild } = this.state
-    this.setState({ showCurrentBuild: !showCurrentBuild})
+    this.setState({ showCurrentBuild: !showCurrentBuild })
   }
 
   render() {
@@ -127,7 +134,7 @@ export default class BuildWizard extends Component {
           })}
         </Stepper>
         <div>
-          {activeStep === steps.length 
+          {activeStep === steps.length
             ? <ResetButton onClick={ this.handleReset }/>
             : <BuildButtons 
                 activeStep={ activeStep } 
